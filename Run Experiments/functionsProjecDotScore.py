@@ -4742,7 +4742,7 @@ def StructureQueryWithoutOF(goldPOS,memory):
                 final = final + " " + memory["having"][0]
     return final
 
-
+## Change the path to the data
 datasetTotest= pd.read_csv("/path/toTheData/ofQuestions/andDatabasesNames")
 
 
