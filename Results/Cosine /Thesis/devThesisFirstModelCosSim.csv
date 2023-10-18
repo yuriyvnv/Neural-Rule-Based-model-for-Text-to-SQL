@@ -1,0 +1,111 @@
+,database,question,verified_output,correct
+0,poker_player,How many poker players are there?,SELECT COUNT(*) FROM poker_player,1
+1,poker_player,Count the number of poker players.,SELECT COUNT(*) FROM poker_player,1
+2,poker_player,List the earnings of poker players in descending order.,SELECT poker_player.earnings FROM poker_player ORDER BY poker_player.Earnings DESC,1
+3,poker_player,"What are the earnings of poker players, ordered descending by value?",SELECT poker_player.earnings FROM poker_player ORDER BY poker_player.Earnings DESC,1
+4,poker_player,List the final tables made and the best finishes of poker players.,"SELECT poker_player.final_table_made ,best_finish FROM poker_player",1
+5,poker_player,What are the final tables made and best finishes for all poker players?,SELECT final_table_made FROM poker_player,0
+6,poker_player,What is the average earnings of poker players?,SELECT AVG(poker_player.Earnings) FROM poker_player,1
+7,poker_player,Return the average earnings across all poker players.,SELECT AVG(poker_player.Earnings) FROM poker_player,1
+8,poker_player,What is the money rank of the poker player with the highest earnings?,SELECT poker_player.money_rank FROM poker_player ORDER BY poker_player.Earnings DESC LIMIT 1,1
+9,poker_player,Return the money rank of the player with the greatest earnings.,SELECT poker_player.money_rank FROM poker_player ORDER BY poker_player.Earnings DESC LIMIT 1,1
+10,poker_player,What is the maximum number of final tables made among poker players with earnings less than 200000?,SELECT MAX(poker_player.Final_Table_Made) FROM poker_player WHERE poker_player.Earnings < '200000' ,1
+11,poker_player,Return the maximum final tables made across all poker players who have earnings below 200000.,SELECT MAX(poker_player.Final_Table_Made) FROM poker_player WHERE poker_player.Earnings < '200000' ,1
+12,poker_player,What are the names of poker players?,SELECT T1.name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID,1
+13,poker_player,Return the names of all the poker players.,SELECT T1.name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID,1
+14,poker_player,What are the names of poker players whose earnings is higher than 300000?,SELECT T1.name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID WHERE T2.Earnings > '300000' ,1
+15,poker_player,Give the names of poker players who have earnings above 300000.,SELECT T1.name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID WHERE T2.Earnings > '300000' ,1
+16,poker_player,List the names of poker players ordered by the final tables made in ascending order.,SELECT T1.name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T2.Final_Table_Made ASC,1
+17,poker_player,What is the birth date of the poker player with the lowest earnings?,SELECT T1.birth_date FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T2.Earnings ASC LIMIT 1,1
+18,poker_player,Return the birth date of the poker player with the lowest earnings.,SELECT T1.birth_date FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T2.Earnings ASC LIMIT 1,1
+19,poker_player,What is the money rank of the tallest poker player?,SELECT poker_player.money_rank FROM poker_player,0
+20,poker_player,Return the money rank of the poker player with the greatest height.,SELECT T2.money_rank FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T1.Height DESC LIMIT 1,1
+21,poker_player,What is the average earnings of poker players with height higher than 200?,SELECT AVG(T2.Earnings) FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID WHERE T1.Height > '200' ,1
+22,poker_player,Give average earnings of poker players who are taller than 200.,SELECT AVG(poker_player.Earnings) FROM poker_player,0
+23,poker_player,What are the names of poker players in descending order of earnings?,SELECT T1.name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T2.Earnings DESC,1
+24,poker_player,Return the names of poker players sorted by their earnings descending.,SELECT T1.name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T2.Earnings DESC,1
+25,poker_player,What are different nationalities of people and the corresponding number of people from each nation?,"SELECT COUNT(*) ,people.nationality FROM people GROUP BY people.nationality",1
+26,poker_player,How many people are there of each nationality?,"SELECT people.nationality ,COUNT(*) FROM people GROUP BY people.nationality",1
+27,poker_player,What is the most common nationality of people?,SELECT people.nationality FROM people GROUP BY people.nationality ORDER BY COUNT(*) DESC LIMIT 1,1
+28,poker_player,Give the nationality that is most common across all people.,SELECT nationality FROM people GROUP BY people.nationality ORDER BY COUNT(*) DESC LIMIT 1,1
+29,poker_player,What are the nationalities that are shared by at least two people?,SELECT nationality FROM people GROUP BY people.nationality HAVING COUNT(*) >= 2,1
+30,poker_player,Return the nationalities for which there are two or more people.,SELECT nationality FROM people,0
+31,poker_player,List the names and birth dates of people in ascending alphabetical order of name.,"SELECT people.name ,birth_date FROM people ORDER BY people.Name ASC",1
+32,poker_player,"What are the names and birth dates of people, ordered by their names in alphabetical order?","SELECT people.name ,birth_date FROM people ORDER BY people.Name",1
+33,poker_player,"Show names of people whose nationality is not ""Russia"".",SELECT people.name FROM people WHERE people.Nationality != 'Russia' ,1
+34,poker_player,What are the names of people who are not from Russia?,SELECT people.name FROM people WHERE people.Nationality != 'Russia' ,1
+35,poker_player,List the names of people that are not poker players.,SELECT T1.name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID,0
+36,poker_player,What are the names of people who do not play poker?,SELECT T1.name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID,0
+37,poker_player,How many distinct nationalities are there?,SELECT COUNT(DISTINCT(people.Nationality)) FROM people,1
+38,poker_player,Count the number of different nationalities.,SELECT COUNT(DISTINCT(people.Nationality)) FROM people,1
+39,voter_1,How many states are there?,SELECT COUNT(*) FROM AREA_CODE_STATE,1
+40,voter_1,"List the contestant numbers and names, ordered by contestant name descending.","SELECT contestant_number ,contestant_name FROM CONTESTANTS ORDER BY CONTESTANTS.contestant_name DESC",1
+41,voter_1,"List the vote ids, phone numbers and states of all votes.","SELECT VOTES.vote_id ,phone_number ,state FROM VOTES",1
+42,voter_1,What are the names of the contestants whose names are not 'Jessie Alloway',SELECT CONTESTANTS.contestant_name FROM CONTESTANTS WHERE CONTESTANTS.contestant_name != 'Jessie Alloway' ,1
+43,voter_1,What are the distinct states and create time of all votes?,"SELECT DISTINCT(VOTES.state) ,created FROM VOTES",1
+44,voter_1,What are the contestant numbers and names of the contestants who had at least two votes?,"SELECT T1.contestant_number ,  contestant_name FROM CONTESTANTS AS T1 JOIN VOTES AS T2 ON T1.contestant_number = T2.contestant_number GROUP BY T1.contestant_number HAVING COUNT(*) >= 2",1
+45,voter_1,"Of all the contestants who got voted, what is the contestant number and name of the contestant who got least votes?","SELECT COUNT(*) ,  T1.contestant_name FROM CONTESTANTS AS T1 JOIN VOTES AS T2 ON T1.contestant_number = T2.contestant_number GROUP BY T1.contestant_name ORDER BY COUNT(*) ASC LIMIT 1",0
+46,voter_1,What are the number of votes from state 'NY' or 'CA'?,SELECT COUNT(*) FROM VOTES WHERE VOTES.state = 'NY'  OR VOTES.state = 'CA' ,1
+47,voter_1,How many contestants did not get voted?,SELECT COUNT(*) FROM CONTESTANTS,0
+48,voter_1,"What are the create dates, states, and phone numbers of the votes that were for the contestant named 'Tabatha Gehling'?","SELECT T2.created ,  state ,  phone_number FROM CONTESTANTS AS T1 JOIN VOTES AS T2 ON T1.contestant_number = T2.contestant_number WHERE T2.created  = 'Tabatha Gehling' ",0
+49,voter_1,Return the names of the contestants whose names contain the substring 'Al' .,SELECT CONTESTANTS.contestant_name FROM CONTESTANTS WHERE CONTESTANTS.contestant_name = 'Al' ,0
+50,orchestra,How many conductors are there?,SELECT COUNT(*) FROM conductor,1
+51,orchestra,Count the number of conductors.,SELECT COUNT(*) FROM conductor,1
+52,orchestra,List the names of conductors in ascending order of age.,SELECT conductor.name FROM conductor ORDER BY conductor.Age ASC,1
+53,orchestra,"What are the names of conductors, ordered by age?",SELECT conductor.name FROM conductor ORDER BY conductor.Age,1
+54,orchestra,"What are the names of conductors whose nationalities are not ""USA""?",SELECT conductor.name FROM conductor WHERE conductor.Nationality != 'USA' ,1
+55,orchestra,"Return the names of conductors that do not have the nationality ""USA"".",SELECT conductor.name FROM conductor WHERE conductor.Nationality != 'USA' ,1
+56,orchestra,What are the record companies of orchestras in descending order of years in which they were founded?,SELECT orchestra.record_company FROM orchestra ORDER BY orchestra.Year_of_Founded DESC,1
+57,orchestra,"Return the record companies of orchestras, sorted descending by the years in which they were founded.",SELECT orchestra.record_company FROM orchestra ORDER BY orchestra.Year_of_Founded DESC,1
+58,orchestra,What is the average attendance of shows?,SELECT AVG(show.Attendance) FROM show,1
+59,orchestra,Return the average attendance across all shows.,SELECT AVG(show.Attendance) FROM show,1
+60,orchestra,"What are the maximum and minimum share of performances whose type is not ""Live final"".","SELECT MAX(performance.Share) ,MIN(performance.Share) FROM performance WHERE performance.Type != 'Live final' ",1
+61,orchestra,"Return the maximum and minimum shares for performances that do not have the type ""Live final"".","SELECT MAX(performance.Share) ,MIN(performance.Share) FROM performance WHERE performance.Type  != 'Live final' ",1
+62,orchestra,How many different nationalities do conductors have?,SELECT COUNT(DISTINCT(conductor.Nationality)) FROM conductor,1
+63,orchestra,Count the number of different nationalities of conductors.,SELECT COUNT(DISTINCT(conductor.Nationality)) FROM conductor,1
+64,orchestra,List the name of the conductor with the most years of work.,SELECT conductor.name FROM conductor ORDER BY conductor.Age DESC LIMIT 1,1
+65,orchestra,What is the name of the conductor who has worked the greatest number of years?,SELECT conductor.name FROM conductor GROUP BY conductor.age ORDER BY conductor.Age DESC LIMIT 1,1
+66,orchestra,Show the names of conductors and the orchestras they have conducted.,SELECT T1.name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID,0
+67,orchestra,What are the names of conductors as well as the corresonding orchestras that they have conducted?,SELECT T1.name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID,0
+68,orchestra,Show the names of conductors that have conducted more than one orchestras.,SELECT T1.name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID GROUP BY T1.name HAVING COUNT(*)> 1,1
+69,orchestra,What are the names of conductors who have conducted at more than one orchestra?,SELECT T1.name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID GROUP BY T1.name HAVING COUNT(*)> 1,1
+70,orchestra,Show the name of the conductor that has conducted the most number of orchestras.,SELECT conductor.name FROM conductor GROUP BY conductor.name ORDER BY COUNT(*) DESC LIMIT 1,0
+71,orchestra,What is the name of the conductor who has conducted the most orchestras?,SELECT T1.name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID GROUP BY T1.name ORDER BY COUNT(*) DESC LIMIT 1,0
+72,orchestra,Please show the name of the conductor that has conducted orchestras founded after 2008.,SELECT T1.name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID    JOIN performance AS T3 ON T3.Performance_ID = T2.Conductor_ID   WHERE T3.Date > 2008,0
+73,orchestra,What are the names of conductors who have conducted orchestras founded after the year 2008?,SELECT T1.name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID WHERE T1.Year_of_Work > 2008,0
+74,orchestra,How many orchestras does each record company manage?,"SELECT COUNT(*) ,orchestra FROM orchestra GROUP BY orchestra",0
+75,orchestra,Please show the record formats of orchestras in ascending order of count.,SELECT orchestra.major_record_format FROM orchestra ORDER BY  orchestra.Major_Record_Format ASC,0
+76,orchestra,"What are the major record formats of orchestras, sorted by their frequency?",SELECT orchestra.major_record_format FROM orchestra,0
+77,orchestra,List the record company shared by the most number of orchestras.,SELECT orchestra.record_company FROM orchestra GROUP BY orchestra.record_company ORDER BY COUNT(*) DESC LIMIT 1,1
+78,orchestra,What is the record company used by the greatest number of orchestras?,SELECT orchestra.record_company FROM orchestra GROUP BY orchestra.record_company ORDER BY COUNT(*) DESC LIMIT 1,1
+79,orchestra,What are the orchestras that do not have any performances?,SELECT orchestra FROM orchestra WHERE  Orchestra_ID NOT IN (SELECT Orchestra_ID  FROM performance),1
+80,orchestra,"Find the number of orchestras whose record format is ""CD"" or ""DVD"".",SELECT COUNT(*) FROM orchestra WHERE orchestra.Major_Record_Format = 'CD'  OR orchestra.Major_Record_Format = 'DVD' ,1
+81,orchestra,Count the number of orchestras that have CD or DVD as their record format.,SELECT COUNT(*) FROM orchestra,0
+82,orchestra,Show the years in which orchestras that have given more than one performance are founded.,SELECT age FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID    JOIN performance AS T3 ON T3.Performance_ID = T2.Conductor_ID   WHERE T2.Orchestra > 'one'  GROUP BY T1.age HAVING COUNT(*)> 1,0
+83,orchestra,What are years of founding for orchestras that have had more than a single performance?,SELECT T1.year_of_founded FROM orchestra AS T1 JOIN performance AS T2 ON T1.Orchestra_ID = T2.Orchestra_ID,0
+84,singer,How many singers are there?,SELECT COUNT(*) FROM singer,1
+85,singer,What is the count of singers?,SELECT COUNT(*) FROM singer,1
+86,singer,List the name of singers in ascending order of net worth.,SELECT singer.name FROM singer ORDER BY singer.Net_Worth_Millions ASC,1
+87,singer,What are the names of singers ordered by ascending net worth?,SELECT singer.name FROM singer ORDER BY singer.Net_Worth_Millions ASC,1
+88,singer,What are the birth year and citizenship of singers?,"SELECT singer.birth_year ,citizenship FROM singer",1
+89,singer,What are the birth years and citizenships of the singers?,"SELECT singer.birth_year ,citizenship FROM singer",1
+90,singer,"List the name of singers whose citizenship is not ""France"".",SELECT singer.name FROM singer WHERE singer.Citizenship != 'France' ,1
+91,singer,What are the names of the singers who are not French citizens?,SELECT singer.name FROM singer,0
+92,singer,Show the name of singers whose birth year is either 1948 or 1949?,SELECT singer.name FROM singer WHERE singer.Birth_Year = '1948'  OR singer.Birth_Year = '1949' ,1
+93,singer,What are the names of the singers whose birth years are either 1948 or 1949?,SELECT singer.name FROM singer WHERE singer.Birth_Year = '1948'  OR singer.Birth_Year = '1949' ,1
+94,singer,What is the name of the singer with the largest net worth?,SELECT singer.name FROM singer ORDER BY singer.Net_Worth_Millions DESC LIMIT 1,1
+95,singer,What is the name of the singer who is worth the most?,SELECT singer.name FROM singer,0
+96,singer,Show different citizenship of singers and the number of singers of each citizenship.,"SELECT COUNT(*) ,singer.citizenship FROM singer GROUP BY singer.citizenship",1
+97,singer,"For each citizenship, how many singers are from that country?","SELECT COUNT(*) ,citizenship FROM singer GROUP BY singer.citizenship",1
+98,singer,Please show the most common citizenship of singers.,SELECT singer.citizenship FROM singer GROUP BY singer.citizenship ORDER BY COUNT(*) DESC LIMIT 1,1
+99,singer,What is the most common singer citizenship ?,SELECT citizenship FROM singer GROUP BY singer.citizenship ORDER BY COUNT(*) DESC LIMIT 1,1
+100,singer,Show different citizenships and the maximum net worth of singers of each citizenship.,"SELECT singer.citizenship ,MAX(singer.Net_Worth_Millions) FROM singer GROUP BY singer.citizenship",1
+101,singer,"For each citizenship, what is the maximum net worth?",SELECT citizenship FROM singer GROUP BY singer.citizenship ORDER BY singer.Net_Worth_Millions DESC LIMIT 1,0
+102,singer,Show titles of songs and names of singers.,"SELECT T1.title ,  T2.name FROM singer AS T2 JOIN song AS T1 ON T2.Singer_ID = T1.Singer_ID",1
+103,singer,What are the song titles and singer names?,"SELECT T1.title ,  T2.name FROM singer AS T2 JOIN song AS T1 ON T2.Singer_ID = T1.Singer_ID",1
+104,singer,Show distinct names of singers that have songs with sales more than 300000.,SELECT DISTINCT(T2.Name) FROM singer AS T2 JOIN song AS T1 ON T2.Singer_ID = T1.Singer_ID WHERE T1.Sales > '300000' ,1
+105,singer,what are the different names of the singers that have sales more than 300000?,SELECT DISTINCT(T2.Name) FROM singer AS T2 JOIN song AS T1 ON T2.Singer_ID = T1.Singer_ID WHERE T1.Sales > '300000' ,1
+106,singer,Show the names of singers that have more than one song.,SELECT T2.name FROM singer AS T2 JOIN song AS T1 ON T2.Singer_ID = T1.Singer_ID GROUP BY T2.name HAVING COUNT(*)> 1,1
+107,singer,What are the names of the singers that have more than one songs?,SELECT T2.name FROM singer AS T2 JOIN song AS T1 ON T2.Singer_ID = T1.Singer_ID GROUP BY T2.name HAVING COUNT(*)> 1,1
+108,singer,Show the names of singers and the total sales of their songs.,"SELECT T1.title ,  T1.sales FROM singer AS T2 JOIN song AS T1 ON T2.Singer_ID = T1.Singer_ID",0
+109,singer,List the name of singers that do not have any song.,SELECT singer.name FROM singer WHERE  Singer_ID NOT IN (SELECT Singer_ID  FROM song),1

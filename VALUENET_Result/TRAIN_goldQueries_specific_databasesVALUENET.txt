@@ -1,0 +1,429 @@
+SELECT count(*) FROM gymnast	gymnast
+SELECT T2.Lifespan FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID ORDER BY Vote_Percent DESC	election_representative
+SELECT Shop_Name FROM shop ORDER BY Open_Year DESC LIMIT 1	device
+SELECT DISTINCT LOCATION FROM track	race_track
+SELECT T2.Name ,  T1.Elimination_Move FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID	wrestler
+SELECT Publisher FROM publication GROUP BY Publisher HAVING COUNT(*)  >  1	book_2
+SELECT Carrier FROM device WHERE Device_ID NOT IN (SELECT Device_ID FROM stock)	device
+SELECT count(*) FROM track	race_track
+SELECT DISTINCT LOCATION FROM track	race_track
+SELECT DISTINCT Nominee FROM musical WHERE Award != "Tony Award"	musical
+SELECT T2.name ,  count(*) FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id	race_track
+SELECT max(years_working) ,  min(years_working) ,  avg(years_working) FROM school_bus	school_bus
+SELECT Name ,  LOCATION FROM wrestler	wrestler
+SELECT T1.Writer FROM book AS T1 JOIN publication AS T2 ON T1.Book_ID  =  T2.Book_ID WHERE T2.Price  >  4000000	book_2
+SELECT DISTINCT home_city FROM driver	school_bus
+SELECT home_city FROM driver WHERE age  >  40 GROUP BY home_city HAVING count(*)  >=  2	school_bus
+SELECT T1.name ,  T1.date ,  T2.name FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id	race_track
+SELECT DISTINCT Reign FROM wrestler WHERE LOCATION != "Tokyo , Japan"	wrestler
+SELECT Character FROM actor ORDER BY age DESC	musical
+SELECT Name FROM climber WHERE Country != "Switzerland"	climbing
+SELECT T2.Name ,  T3.Date FROM member_attendance AS T1 JOIN member AS T2 ON T1.Member_ID  =  T2.Member_ID JOIN performance AS T3 ON T1.Performance_ID  =  T3.Performance_ID ORDER BY T3.Attendance DESC	performance_attendance
+SELECT name ,  CLASS ,  date FROM race	race_track
+SELECT Lifespan FROM representative WHERE State  =  "New York" OR State  =  "Indiana"	election_representative
+SELECT T1.Name ,  T2.Height FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID	climbing
+SELECT name FROM driver WHERE home_city  =  'Hartford' AND age  <  40	school_bus
+SELECT count(*) ,  flag FROM ship GROUP BY flag	ship_1
+SELECT name FROM captain ORDER BY age LIMIT 1	ship_1
+SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID ORDER BY COUNT(*) DESC LIMIT 1	device
+SELECT DISTINCT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID WHERE T1.Total_Points  >  57.5	gymnast
+SELECT T2.Party FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID ORDER BY votes ASC LIMIT 1	election_representative
+SELECT T2.Theme FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID WHERE T1.Population  >  1000	farm
+SELECT Hosts FROM farm_competition WHERE Theme !=  'Aliens'	farm
+SELECT Price FROM publication WHERE Publisher  =  "Person" OR Publisher  =  "Wiley"	book_2
+SELECT LOCATION FROM wrestler GROUP BY LOCATION HAVING COUNT(*)  >  2	wrestler
+SELECT Total_Horses FROM farm ORDER BY Total_Horses ASC	farm
+SELECT Title ,  Issues FROM book	book_2
+SELECT DISTINCT T1.age FROM management AS T2 JOIN head AS T1 ON T1.head_id  =  T2.head_id WHERE T2.temporary_acting  =  'Yes'	department_management
+SELECT Shop_Name ,  LOCATION FROM shop ORDER BY Shop_Name ASC	device
+SELECT T2.Hometown ,  COUNT(*) FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown	gymnast
+SELECT CLASS ,  count(*) FROM race GROUP BY CLASS	race_track
+SELECT DISTINCT T1.creation FROM department AS T1 JOIN management AS T2 ON T1.department_id  =  T2.department_id JOIN head AS T3 ON T2.head_id  =  T3.head_id WHERE T3.born_state  =  'Alabama'	department_management
+SELECT name ,  TYPE ,  flag FROM ship ORDER BY built_year DESC LIMIT 1	ship_1
+SELECT Name FROM People ORDER BY Age DESC LIMIT 5	gymnast
+SELECT Country FROM mountain GROUP BY Country HAVING COUNT(*)  >  1	climbing
+SELECT Name FROM mountain WHERE Mountain_ID NOT IN (SELECT Mountain_ID FROM climber)	climbing
+SELECT Date ,  Vote_Percent FROM election	election_representative
+SELECT T2.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID GROUP BY T1.Musical_ID HAVING COUNT(*)  >=  3	musical
+SELECT Age FROM people ORDER BY Height DESC LIMIT 1	gymnast
+SELECT T2.Age FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T1.Total_Points DESC	gymnast
+SELECT Publisher FROM publication ORDER BY Price DESC LIMIT 1	book_2
+SELECT max(Points) FROM climber WHERE Country  =  "United Kingdom"	climbing
+SELECT T2.name FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id ORDER BY count(*) DESC LIMIT 1	race_track
+SELECT count(*) FROM farm	farm
+SELECT T2.name ,  T2.location FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id HAVING count(*)  =  1	race_track
+SELECT Name ,  Party FROM representative	election_representative
+SELECT name FROM captain ORDER BY age DESC	ship_1
+SELECT T2.Name ,  T2.age ,  T3.Theme FROM journal_committee AS T1 JOIN editor AS T2 ON T1.Editor_ID  =  T2.Editor_ID JOIN journal AS T3 ON T1.Journal_ID  =  T3.Journal_ID ORDER BY T3.Theme ASC	journal_committee
+SELECT T2.Name ,  COUNT(*) FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID GROUP BY T1.Musical_ID	musical
+SELECT T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID HAVING COUNT(*)  >  1	farm
+SELECT count(*) FROM ship	ship_1
+SELECT T2.type ,  count(*) FROM school_bus AS T1 JOIN school AS T2 ON T1.school_id  =  T2.school_id GROUP BY T2.type	school_bus
+SELECT COUNT (DISTINCT Publication_Date) FROM publication	book_2
+SELECT t1.name FROM ship AS t1 JOIN captain AS t2 ON t1.ship_id  =  t2.ship_id ORDER BY t2.age LIMIT 1	ship_1
+SELECT Hosts FROM farm_competition WHERE Theme !=  'Aliens'	farm
+SELECT Clean_Jerk FROM body_builder ORDER BY Total DESC LIMIT 1	body_builder
+SELECT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown HAVING COUNT(*)  >=  2	gymnast
+SELECT State FROM representative GROUP BY State HAVING COUNT(*)  >=  2	election_representative
+SELECT T2.Name FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID WHERE Votes  >  10000	election_representative
+SELECT Team ,  COUNT(*) FROM elimination GROUP BY Team	wrestler
+SELECT T1.editor_id ,  T1.Name ,  COUNT(*) FROM editor AS T1 JOIN journal_committee AS T2 ON T1.Editor_ID  =  T2.Editor_ID GROUP BY T1.editor_id	journal_committee
+SELECT Name FROM editor WHERE editor_id NOT IN (SELECT editor_id FROM journal_committee)	journal_committee
+SELECT T2.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID GROUP BY T1.Musical_ID HAVING COUNT(*)  >=  3	musical
+SELECT T1.Time FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID WHERE T2.Country  =  "Uganda"	climbing
+SELECT T1.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID ORDER BY T2.Year DESC	musical
+SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID	gymnast
+SELECT Party ,  COUNT(*) FROM representative GROUP BY Party ORDER BY COUNT(*) DESC LIMIT 1	election_representative
+SELECT name FROM track WHERE track_id NOT IN (SELECT track_id FROM race)	race_track
+SELECT CLASS FROM race GROUP BY CLASS HAVING count(*)  >=  2	race_track
+SELECT Character ,  Duration FROM actor	musical
+SELECT count(*) FROM climber	climbing
+SELECT Carrier FROM device WHERE Device_ID NOT IN (SELECT Device_ID FROM stock)	device
+SELECT max(Cows) ,  min(Cows) FROM farm	farm
+SELECT name FROM head WHERE born_state != 'California'	department_management
+SELECT min(seating) ,  max(seating) ,  avg(seating) FROM track	race_track
+SELECT COUNT(DISTINCT Country) FROM climber	climbing
+SELECT T2.Name ,  T1.Date FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID	election_representative
+SELECT Age FROM people ORDER BY Height DESC LIMIT 1	gymnast
+SELECT Theme FROM farm_competition ORDER BY YEAR ASC	farm
+SELECT name ,  LOCATION FROM track	race_track
+SELECT count(*) FROM book	book_2
+SELECT avg(T1.sales) FROM journal AS T1 JOIN journal_committee AS T2 ON T1.journal_ID  =  T2.journal_ID WHERE T2.work_type  =  'Photo'	journal_committee
+SELECT count(*) FROM driver WHERE home_city  =  'Hartford' OR age  <  40	school_bus
+SELECT name ,  CLASS FROM ship WHERE ship_id NOT IN (SELECT ship_id FROM captain)	ship_1
+SELECT Name FROM climber WHERE Country != "Switzerland"	climbing
+SELECT T1.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID WHERE T2.Name  =  "The Phantom of the Opera"	musical
+SELECT avg(Attendance) FROM performance	performance_attendance
+SELECT Name FROM Representative WHERE Party != "Republican"	election_representative
+SELECT Duration FROM actor ORDER BY Age DESC LIMIT 1	musical
+SELECT COUNT (DISTINCT team) FROM elimination	wrestler
+SELECT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown ORDER BY COUNT(*) DESC LIMIT 1	gymnast
+SELECT t1.name FROM ship AS t1 JOIN captain AS t2 ON t1.ship_id  =  t2.ship_id GROUP BY t2.ship_id HAVING count(*)  >  1	ship_1
+SELECT COUNT(DISTINCT Country) FROM climber	climbing
+SELECT party FROM driver WHERE home_city  =  'Hartford' AND age  >  40	school_bus
+SELECT Official_Name FROM city WHERE City_ID NOT IN (SELECT Host_city_ID FROM farm_competition)	farm
+SELECT count(DISTINCT Hometown) FROM people	gymnast
+SELECT RESULT FROM musical GROUP BY RESULT ORDER BY COUNT(*) DESC LIMIT 1	musical
+SELECT avg(T2.Age) FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID	gymnast
+SELECT count(*) ,  rank FROM captain WHERE age  <  50 GROUP BY rank	ship_1
+SELECT Software_Platform ,  COUNT(*) FROM device GROUP BY Software_Platform	device
+SELECT max(budget_in_billions) ,  min(budget_in_billions) FROM department	department_management
+SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID HAVING COUNT(*)  >  1	device
+SELECT t1.name FROM driver AS t1 JOIN school_bus AS t2 ON t1.driver_id  =  t2.driver_id ORDER BY years_working DESC LIMIT 1	school_bus
+SELECT COUNT (DISTINCT team) FROM elimination	wrestler
+SELECT Name FROM editor WHERE Age  >  25	journal_committee
+SELECT DISTINCT T2.Name FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID WHERE T1.Country  =  "West Germany"	climbing
+SELECT name ,  CLASS ,  rank FROM captain	ship_1
+SELECT T1.name ,  T1.num_employees FROM department AS T1 JOIN management AS T2 ON T1.department_id  =  T2.department_id WHERE T2.temporary_acting  =  'Yes'	department_management
+SELECT count(*) FROM actor	musical
+SELECT Team ,  COUNT(*) FROM elimination GROUP BY Team	wrestler
+SELECT Name FROM musical WHERE Musical_ID NOT IN (SELECT Musical_ID FROM actor)	musical
+SELECT Duration FROM actor ORDER BY Age DESC LIMIT 1	musical
+SELECT name ,  LOCATION ,  seating FROM track ORDER BY year_opened DESC LIMIT 1	race_track
+SELECT T1.Name ,  T2.Name FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID	climbing
+SELECT Name FROM musical WHERE Nominee  =  "Bob Fosse"	musical
+SELECT name ,  seating FROM track WHERE year_opened  >  2000 ORDER BY seating	race_track
+SELECT T1.Name FROM editor AS T1 JOIN journal_committee AS T2 ON T1.Editor_ID  =  T2.Editor_ID GROUP BY T1.Name HAVING COUNT(*)  >=  2	journal_committee
+SELECT LOCATION FROM wrestler GROUP BY LOCATION HAVING COUNT(*)  >  2	wrestler
+SELECT Writer FROM book ORDER BY Writer ASC	book_2
+SELECT Name FROM wrestler WHERE Wrestler_ID NOT IN (SELECT Wrestler_ID FROM elimination)	wrestler
+SELECT T2.Name ,  T3.Location FROM member_attendance AS T1 JOIN member AS T2 ON T1.Member_ID  =  T2.Member_ID JOIN performance AS T3 ON T1.Performance_ID  =  T3.Performance_ID ORDER BY T2.Name ASC	performance_attendance
+SELECT DISTINCT Nominee FROM musical WHERE Award != "Tony Award"	musical
+SELECT Carrier FROM device WHERE Software_Platform != 'Android'	device
+SELECT count(*) ,  flag FROM ship GROUP BY flag	ship_1
+SELECT Name FROM mountain WHERE Height  >  5000 OR Prominence  >  1000	climbing
+SELECT Country ,  COUNT(*) FROM climber GROUP BY Country	climbing
+SELECT DISTINCT T2.Name FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID WHERE T1.Country  =  "West Germany"	climbing
+SELECT Total_Points FROM gymnast ORDER BY Total_Points DESC	gymnast
+SELECT Software_Platform FROM device GROUP BY Software_Platform ORDER BY COUNT(*) DESC	device
+SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) ASC	farm
+SELECT Name FROM actor WHERE Age != 20	musical
+SELECT T2.Name FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T1.Total DESC	body_builder
+SELECT name ,  flag FROM ship WHERE ship_id NOT IN (SELECT ship_id FROM captain WHERE rank  =  'Midshipman')	ship_1
+SELECT T2.Name FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID ORDER BY votes DESC	election_representative
+SELECT Name FROM People ORDER BY Name ASC	gymnast
+SELECT TIME FROM elimination WHERE Eliminated_By  =  "Punk" OR Eliminated_By  =  "Orton"	wrestler
+SELECT Software_Platform FROM device GROUP BY Software_Platform ORDER BY COUNT(*) DESC LIMIT 1	device
+SELECT name FROM captain WHERE rank  =  'Midshipman' OR rank  =  'Lieutenant'	ship_1
+SELECT min(seating) ,  max(seating) ,  avg(seating) FROM track	race_track
+SELECT name FROM driver WHERE driver_id NOT IN (SELECT driver_id FROM school_bus)	school_bus
+SELECT Name FROM mountain ORDER BY Name ASC	climbing
+SELECT CLASS FROM race GROUP BY CLASS ORDER BY count(*) DESC LIMIT 1	race_track
+SELECT Shop_Name FROM shop ORDER BY Open_Year ASC	device
+SELECT T2.Name ,  COUNT(*) FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID GROUP BY T1.Musical_ID	musical
+SELECT count(*) FROM department WHERE department_id NOT IN (SELECT department_id FROM management);	department_management
+SELECT Name ,  LOCATION FROM wrestler	wrestler
+SELECT Name FROM mountain ORDER BY Name ASC	climbing
+SELECT T1.Name ,  T2.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID	musical
+SELECT Party FROM representative GROUP BY Party HAVING COUNT(*)  >=  3	election_representative
+SELECT Elimination_Move FROM Elimination WHERE Team  =  "Team Orton"	wrestler
+SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID HAVING COUNT(*)  >  1	device
+SELECT Team FROM elimination GROUP BY Team HAVING COUNT(*)  >  3	wrestler
+SELECT Software_Platform ,  COUNT(*) FROM device GROUP BY Software_Platform	device
+SELECT Publisher ,  COUNT(*) FROM publication GROUP BY Publisher	book_2
+SELECT count(*) FROM election	election_representative
+SELECT count(*) FROM race	race_track
+SELECT Official_Name FROM city ORDER BY Population DESC	farm
+SELECT party ,  count(*) FROM driver GROUP BY party	school_bus
+SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID ORDER BY COUNT(*) DESC LIMIT 1	device
+SELECT Publication_Date FROM publication ORDER BY Price DESC	book_2
+SELECT avg(age) ,  min(age) ,  CLASS FROM captain GROUP BY CLASS	ship_1
+SELECT count(*) FROM device	device
+SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID ORDER BY SUM(T1.quantity) DESC LIMIT 1	device
+SELECT T1.Title FROM book AS T1 JOIN publication AS T2 ON T1.Book_ID  =  T2.Book_ID ORDER BY T2.Price DESC	book_2
+SELECT count(*) ,  rank FROM captain GROUP BY rank	ship_1
+SELECT name ,  seating FROM track WHERE year_opened  >  2000 ORDER BY seating	race_track
+SELECT Range FROM mountain GROUP BY Range ORDER BY COUNT(*) DESC LIMIT 1	climbing
+SELECT Total_Points FROM gymnast ORDER BY Floor_Exercise_Points DESC	gymnast
+SELECT Name FROM wrestler WHERE Days_held  <  100	wrestler
+SELECT T1.Total_Points FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T2.Age ASC LIMIT 1	gymnast
+SELECT Carrier FROM device WHERE Software_Platform != 'Android'	device
+SELECT Team FROM elimination GROUP BY Team HAVING COUNT(*)  >  3	wrestler
+SELECT T2.Carrier FROM stock AS T1 JOIN device AS T2 ON T1.Device_ID  =  T2.Device_ID GROUP BY T1.Device_ID HAVING COUNT(*)  >  1	device
+SELECT name ,  CLASS FROM ship WHERE ship_id NOT IN (SELECT ship_id FROM captain)	ship_1
+SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID ORDER BY SUM(T1.quantity) DESC LIMIT 1	device
+SELECT Birth_Date FROM People ORDER BY Height ASC	body_builder
+SELECT year_opened FROM track WHERE seating BETWEEN 4000 AND 5000	race_track
+SELECT count(DISTINCT Party) FROM representative	election_representative
+SELECT Height ,  Weight FROM people ORDER BY Height DESC	body_builder
+SELECT flag FROM ship GROUP BY flag ORDER BY count(*) DESC LIMIT 1	ship_1
+SELECT T1.Name ,  T2.Height FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID	climbing
+SELECT Census_Ranking FROM city WHERE Status !=  "Village"	farm
+SELECT creation ,  name ,  budget_in_billions FROM department	department_management
+SELECT Elimination_Move FROM Elimination WHERE Team  =  "Team Orton"	wrestler
+SELECT Name FROM climber ORDER BY Points DESC	climbing
+SELECT count(*) FROM farm	farm
+SELECT Software_Platform FROM device GROUP BY Software_Platform ORDER BY COUNT(*) DESC	device
+SELECT count(*) FROM actor	musical
+SELECT Software_Platform FROM device GROUP BY Software_Platform ORDER BY COUNT(*) DESC LIMIT 1	device
+SELECT avg(T2.Age) FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID	gymnast
+SELECT Country FROM mountain WHERE Height  >  5000	climbing
+SELECT Name FROM wrestler ORDER BY Days_held ASC LIMIT 1	wrestler
+SELECT Status ,  avg(Population) FROM city GROUP BY Status	farm
+SELECT TIME FROM elimination WHERE Eliminated_By  =  "Punk" OR Eliminated_By  =  "Orton"	wrestler
+SELECT T2.Height FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID ORDER BY T1.Points DESC LIMIT 1	climbing
+SELECT Reign ,  Days_held FROM wrestler	wrestler
+SELECT Name FROM People ORDER BY Age DESC LIMIT 5	gymnast
+SELECT count(*) FROM wrestler	wrestler
+SELECT Name FROM mountain WHERE Mountain_ID NOT IN (SELECT Mountain_ID FROM climber)	climbing
+SELECT min(snatch) FROM body_builder	body_builder
+SELECT T2.Year ,  T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID	farm
+SELECT TYPE FROM school GROUP BY TYPE HAVING count(*)  =  2	school_bus
+SELECT count(*) FROM people WHERE people_id NOT IN (SELECT People_ID FROM body_builder)	body_builder
+SELECT Name FROM editor ORDER BY Age ASC LIMIT 1	journal_committee
+SELECT Name FROM musical WHERE Musical_ID NOT IN (SELECT Musical_ID FROM actor)	musical
+SELECT count(DISTINCT temporary_acting) FROM management	department_management
+SELECT Official_Name ,  Status FROM city ORDER BY Population DESC LIMIT 1	farm
+SELECT DISTINCT Publisher FROM publication WHERE Price  >  5000000	book_2
+SELECT count(DISTINCT Status) FROM city	farm
+SELECT Name FROM editor ORDER BY Age ASC	journal_committee
+SELECT Name FROM actor WHERE Age != 20	musical
+SELECT Status ,  avg(Population) FROM city GROUP BY Status	farm
+SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID WHERE T2.Hometown != "Santo Domingo"	gymnast
+SELECT avg(Quantity) FROM stock	device
+SELECT Official_Name FROM city WHERE City_ID NOT IN (SELECT Host_city_ID FROM farm_competition)	farm
+SELECT Birth_Place FROM people GROUP BY Birth_Place ORDER BY COUNT(*) DESC LIMIT 1	body_builder
+SELECT T2.Height FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID WHERE T1.Total  <  315	body_builder
+SELECT T2.Name ,  T3.Theme FROM journal_committee AS T1 JOIN editor AS T2 ON T1.Editor_ID  =  T2.Editor_ID JOIN journal AS T3 ON T1.Journal_ID  =  T3.Journal_ID	journal_committee
+SELECT name FROM ship ORDER BY built_year ,  CLASS	ship_1
+SELECT Total FROM body_builder ORDER BY Total ASC	body_builder
+SELECT T1.Time FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID WHERE T2.Days_held  >  50	wrestler
+SELECT T2.Name ,  T3.Theme FROM journal_committee AS T1 JOIN editor AS T2 ON T1.Editor_ID  =  T2.Editor_ID JOIN journal AS T3 ON T1.Journal_ID  =  T3.Journal_ID	journal_committee
+SELECT Theme FROM farm_competition ORDER BY YEAR ASC	farm
+SELECT avg(Snatch) FROM body_builder	body_builder
+SELECT head_id ,  name FROM head WHERE name LIKE '%Ha%'	department_management
+SELECT T1.name ,  T1.date ,  T2.name FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id	race_track
+SELECT name ,  TYPE ,  flag FROM ship ORDER BY built_year DESC LIMIT 1	ship_1
+SELECT count(DISTINCT rank) FROM captain	ship_1
+SELECT count(DISTINCT Software_Platform) FROM device	device
+SELECT count(*) FROM race	race_track
+SELECT T1.Total_Points FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T2.Age ASC LIMIT 1	gymnast
+SELECT name FROM captain ORDER BY age LIMIT 1	ship_1
+SELECT Shop_Name FROM shop WHERE Shop_ID NOT IN (SELECT Shop_ID FROM stock)	device
+SELECT Snatch ,  Clean_Jerk FROM body_builder ORDER BY Snatch ASC	body_builder
+SELECT Name FROM wrestler ORDER BY Days_held ASC LIMIT 1	wrestler
+SELECT avg(age) ,  min(age) ,  CLASS FROM captain GROUP BY CLASS	ship_1
+SELECT Age FROM editor GROUP BY Age ORDER BY COUNT(*) DESC LIMIT 1	journal_committee
+SELECT T2.name ,  T2.location FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id HAVING count(*)  =  1	race_track
+SELECT count(*) FROM ship	ship_1
+SELECT T3.Shop_Name ,  T2.Carrier FROM stock AS T1 JOIN device AS T2 ON T1.Device_ID  =  T2.Device_ID JOIN shop AS T3 ON T1.Shop_ID  =  T3.Shop_ID	device
+SELECT T1.Time FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID WHERE T2.Country  =  "Uganda"	climbing
+SELECT T1.Status FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID ORDER BY COUNT(*) DESC LIMIT 1	farm
+SELECT creation FROM department GROUP BY creation ORDER BY count(*) DESC LIMIT 1	department_management
+SELECT Name FROM People ORDER BY Name ASC	gymnast
+SELECT Nominee FROM musical GROUP BY Nominee HAVING COUNT(*)  >  2	musical
+SELECT name FROM captain WHERE rank  =  'Midshipman' OR rank  =  'Lieutenant'	ship_1
+SELECT T2.Hometown ,  COUNT(*) FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown	gymnast
+SELECT T2.Name ,  T1.Elimination_Move FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID	wrestler
+SELECT Age ,  COUNT(*) FROM editor GROUP BY Age	journal_committee
+SELECT Nominee FROM musical WHERE Award  =  "Tony Award" OR Award  =  "Cleavant Derricks"	musical
+SELECT Name FROM climber ORDER BY Points DESC	climbing
+SELECT DISTINCT Reign FROM wrestler WHERE LOCATION != "Tokyo , Japan"	wrestler
+SELECT Official_Name FROM city ORDER BY Population DESC	farm
+SELECT T2.Name ,  T1.Team FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID ORDER BY T2.Days_held DESC	wrestler
+SELECT Publication_Date FROM publication GROUP BY Publication_Date ORDER BY COUNT(*) DESC LIMIT 1	book_2
+SELECT Shop_Name FROM shop ORDER BY Open_Year ASC	device
+SELECT T1.Name ,  T2.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID	musical
+SELECT Name FROM wrestler WHERE Wrestler_ID NOT IN (SELECT Wrestler_ID FROM elimination)	wrestler
+SELECT name ,  CLASS ,  rank FROM captain	ship_1
+SELECT avg(Horizontal_Bar_Points) FROM gymnast	gymnast
+SELECT name FROM driver ORDER BY age DESC	school_bus
+SELECT Open_Date ,  Open_Year FROM shop WHERE Shop_Name  =  "Apple"	device
+SELECT home_city FROM driver GROUP BY home_city ORDER BY count(*) DESC LIMIT 1	school_bus
+SELECT count(*) FROM climber	climbing
+SELECT DISTINCT Range FROM mountain ORDER BY Prominence DESC LIMIT 3	climbing
+SELECT Title FROM book ORDER BY Issues ASC	book_2
+SELECT Name FROM mountain ORDER BY Height DESC LIMIT 1	climbing
+SELECT school ,  TYPE FROM school WHERE school_id NOT IN (SELECT school_id FROM school_bus)	school_bus
+SELECT T1.Time FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID ORDER BY T2.Days_held DESC LIMIT 1	wrestler
+SELECT Name FROM editor WHERE Age  =  24 OR Age  =  25	journal_committee
+SELECT T1.Time FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID WHERE T2.Days_held  >  50	wrestler
+SELECT count(*) FROM performance	performance_attendance
+SELECT T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID HAVING COUNT(*)  >  1	farm
+SELECT avg(Working_Horses) FROM farm WHERE Total_Horses  >  5000	farm
+SELECT Date ,  LOCATION FROM performance	performance_attendance
+SELECT Birth_Place ,  COUNT(*) FROM people GROUP BY Birth_Place	body_builder
+SELECT CLASS FROM race GROUP BY CLASS ORDER BY count(*) DESC LIMIT 1	race_track
+SELECT T2.Name FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T2.Weight DESC LIMIT 1	body_builder
+SELECT LOCATION FROM performance GROUP BY LOCATION ORDER BY COUNT(*) DESC LIMIT 1	performance_attendance
+SELECT T1.department_id ,  T1.name ,  count(*) FROM management AS T2 JOIN department AS T1 ON T1.department_id  =  T2.department_id GROUP BY T1.department_id HAVING count(*)  >  1	department_management
+SELECT t1.name FROM ship AS t1 JOIN captain AS t2 ON t1.ship_id  =  t2.ship_id GROUP BY t2.ship_id HAVING count(*)  >  1	ship_1
+SELECT Name FROM wrestler ORDER BY Days_held DESC	wrestler
+SELECT CLASS FROM captain GROUP BY CLASS HAVING count(*)  >  2	ship_1
+SELECT Census_Ranking FROM city WHERE Status !=  "Village"	farm
+SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) ASC	farm
+SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) DESC LIMIT 1	farm
+SELECT T1.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID ORDER BY T2.Year DESC	musical
+SELECT count(*) FROM head WHERE age  >  56	department_management
+SELECT T2.school ,  T3.name FROM school_bus AS T1 JOIN school AS T2 ON T1.school_id  =  T2.school_id JOIN driver AS T3 ON T1.driver_id  =  T3.driver_id	school_bus
+SELECT Official_Name FROM city WHERE Population  >  1500 OR Population  <  500	farm
+SELECT RESULT FROM musical GROUP BY RESULT ORDER BY COUNT(*) DESC LIMIT 1	musical
+SELECT T2.Name FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID	body_builder
+SELECT Country FROM mountain WHERE Height  >  5000	climbing
+SELECT CLASS ,  count(*) FROM race GROUP BY CLASS	race_track
+SELECT built_year FROM ship GROUP BY built_year ORDER BY count(*) DESC LIMIT 1	ship_1
+SELECT T2.Name ,  T1.Team FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID ORDER BY T2.Days_held DESC	wrestler
+SELECT rank FROM captain GROUP BY rank ORDER BY count(*) DESC LIMIT 1	ship_1
+SELECT name ,  LOCATION ,  seating FROM track ORDER BY year_opened DESC LIMIT 1	race_track
+SELECT Party ,  COUNT(*) FROM representative GROUP BY Party	election_representative
+SELECT DISTINCT CLASS FROM race	race_track
+SELECT avg(T1.Total) FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID WHERE T2.Height  >  200	body_builder
+SELECT Writer FROM book GROUP BY Writer HAVING COUNT(*)  >  1	book_2
+SELECT Attendance FROM performance WHERE LOCATION  =  "TD Garden" OR LOCATION  =  "Bell Centre"	performance_attendance
+SELECT Character FROM actor ORDER BY age DESC	musical
+SELECT Shop_Name ,  LOCATION FROM shop ORDER BY Shop_Name ASC	device
+SELECT DISTINCT Range FROM mountain ORDER BY Prominence DESC LIMIT 3	climbing
+SELECT T1.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID WHERE T2.Name  =  "The Phantom of the Opera"	musical
+SELECT avg(num_employees) FROM department WHERE ranking BETWEEN 10 AND 15	department_management
+SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T2.Height ASC	gymnast
+SELECT Reign FROM wrestler GROUP BY Reign ORDER BY COUNT(*) DESC LIMIT 1	wrestler
+SELECT name FROM ship ORDER BY built_year ,  CLASS	ship_1
+SELECT T3.Date FROM member_attendance AS T1 JOIN member AS T2 ON T1.Member_ID  =  T2.Member_ID JOIN performance AS T3 ON T1.Performance_ID  =  T3.Performance_ID WHERE T2.Role  =  "Violin"	performance_attendance
+SELECT Name FROM wrestler ORDER BY Days_held DESC	wrestler
+SELECT LOCATION ,  COUNT(*) FROM performance GROUP BY LOCATION	performance_attendance
+SELECT count(DISTINCT Software_Platform) FROM device	device
+SELECT T2.name FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id ORDER BY count(*) DESC LIMIT 1	race_track
+SELECT avg(Horizontal_Bar_Points) FROM gymnast	gymnast
+SELECT min(Vote_Percent) ,  max(Vote_Percent) FROM election	election_representative
+SELECT avg(Quantity) FROM stock	device
+SELECT name FROM track WHERE track_id NOT IN (SELECT track_id FROM race)	race_track
+SELECT name ,  LOCATION FROM track	race_track
+SELECT count(*) FROM gymnast	gymnast
+SELECT count(DISTINCT Status) FROM city	farm
+SELECT count(DISTINCT rank) FROM captain	ship_1
+SELECT count(*) FROM body_builder	body_builder
+SELECT HOST FROM performance ORDER BY Attendance ASC	performance_attendance
+SELECT Name FROM wrestler WHERE Days_held  <  100	wrestler
+SELECT Title FROM book WHERE Writer != "Elaine Lee"	book_2
+SELECT T1.Status FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID ORDER BY COUNT(*) DESC LIMIT 1	farm
+SELECT Range FROM mountain GROUP BY Range ORDER BY COUNT(*) DESC LIMIT 1	climbing
+SELECT avg(Working_Horses) FROM farm WHERE Total_Horses  >  5000	farm
+SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID	gymnast
+SELECT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown ORDER BY COUNT(*) DESC LIMIT 1	gymnast
+SELECT Name FROM mountain ORDER BY Height DESC LIMIT 1	climbing
+SELECT T1.Name ,  T2.Name FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID	climbing
+SELECT Name FROM actor ORDER BY Name ASC	musical
+SELECT Nominee FROM musical GROUP BY Nominee HAVING COUNT(*)  >  2	musical
+SELECT LOCATION FROM performance GROUP BY LOCATION HAVING COUNT(*)  >=  2	performance_attendance
+SELECT Title FROM book WHERE Book_ID NOT IN (SELECT Book_ID FROM publication)	book_2
+SELECT Open_Date ,  Open_Year FROM shop WHERE Shop_Name  =  "Apple"	device
+SELECT T3.Shop_Name ,  T2.Carrier FROM stock AS T1 JOIN device AS T2 ON T1.Device_ID  =  T2.Device_ID JOIN shop AS T3 ON T1.Shop_ID  =  T3.Shop_ID	device
+SELECT Publication_Date FROM publication ORDER BY Price ASC LIMIT 3	book_2
+SELECT rank FROM captain GROUP BY rank ORDER BY count(*) DESC LIMIT 1	ship_1
+SELECT Total_Points FROM gymnast ORDER BY Total_Points DESC	gymnast
+SELECT max(Points) FROM climber WHERE Country  =  "United Kingdom"	climbing
+SELECT count(*) FROM device	device
+SELECT Birth_Place FROM people GROUP BY Birth_Place HAVING COUNT(*)  >=  2	body_builder
+SELECT Reign FROM wrestler GROUP BY Reign ORDER BY COUNT(*) DESC LIMIT 1	wrestler
+SELECT flag FROM ship GROUP BY flag ORDER BY count(*) DESC LIMIT 1	ship_1
+SELECT T2.Height FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID ORDER BY T1.Points DESC LIMIT 1	climbing
+SELECT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown HAVING COUNT(*)  >=  2	gymnast
+SELECT t1.name FROM ship AS t1 JOIN captain AS t2 ON t1.ship_id  =  t2.ship_id ORDER BY t2.age LIMIT 1	ship_1
+SELECT Country FROM mountain GROUP BY Country HAVING COUNT(*)  >  1	climbing
+SELECT Official_Name FROM city WHERE Population  >  1500 OR Population  <  500	farm
+SELECT name FROM captain ORDER BY age DESC	ship_1
+SELECT Character ,  Duration FROM actor	musical
+SELECT count(DISTINCT Birth_Place) FROM people	body_builder
+SELECT Nominee FROM musical WHERE Award  =  "Tony Award" OR Award  =  "Cleavant Derricks"	musical
+SELECT T2.Age FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T1.Total_Points DESC	gymnast
+SELECT Name FROM representative WHERE Representative_ID NOT IN (SELECT Representative_ID FROM election)	election_representative
+SELECT DISTINCT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID WHERE T1.Total_Points  >  57.5	gymnast
+SELECT T2.Theme FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID WHERE T1.Population  >  1000	farm
+SELECT Nominee ,  COUNT(*) FROM musical GROUP BY Nominee	musical
+SELECT Name FROM mountain WHERE Height  >  5000 OR Prominence  >  1000	climbing
+SELECT Country ,  COUNT(*) FROM climber GROUP BY Country	climbing
+SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID WHERE T2.Hometown != "Santo Domingo"	gymnast
+SELECT name ,  home_city ,  age FROM driver	school_bus
+SELECT count(*) FROM editor	journal_committee
+SELECT name ,  born_state ,  age FROM head ORDER BY age	department_management
+SELECT T1.Time FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID ORDER BY T2.Days_held DESC LIMIT 1	wrestler
+SELECT count(*) FROM driver	school_bus
+SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) DESC LIMIT 1	farm
+SELECT Nominee ,  COUNT(*) FROM musical GROUP BY Nominee	musical
+SELECT T2.Carrier FROM stock AS T1 JOIN device AS T2 ON T1.Device_ID  =  T2.Device_ID GROUP BY T1.Device_ID HAVING COUNT(*)  >  1	device
+SELECT max(Cows) ,  min(Cows) FROM farm	farm
+SELECT Reign ,  Days_held FROM wrestler	wrestler
+SELECT Name FROM actor ORDER BY Name ASC	musical
+SELECT T2.Name FROM journal_committee AS T1 JOIN editor AS T2 ON T1.Editor_ID  =  T2.Editor_ID JOIN journal AS T3 ON T1.Journal_ID  =  T3.Journal_ID WHERE T3.Sales  >  3000	journal_committee
+SELECT Total_Horses FROM farm ORDER BY Total_Horses ASC	farm
+SELECT DISTINCT Theme FROM journal	journal_committee
+SELECT T2.Name FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID WHERE T1.Total  >  300	body_builder
+SELECT count(*) ,  rank FROM captain GROUP BY rank	ship_1
+SELECT Shop_Name FROM shop WHERE Shop_ID NOT IN (SELECT Shop_ID FROM stock)	device
+SELECT Name FROM member WHERE Member_ID NOT IN (SELECT Member_ID FROM member_attendance)	performance_attendance
+SELECT Shop_Name FROM shop ORDER BY Open_Year DESC LIMIT 1	device
+SELECT CLASS FROM captain GROUP BY CLASS HAVING count(*)  >  2	ship_1
+SELECT count(DISTINCT Hometown) FROM people	gymnast
+SELECT count(*) FROM wrestler	wrestler
+SELECT Nominee FROM musical GROUP BY Nominee ORDER BY COUNT(*) DESC LIMIT 1	musical
+SELECT * FROM body_builder	body_builder
+SELECT Nominee FROM musical GROUP BY Nominee ORDER BY COUNT(*) DESC LIMIT 1	musical
+SELECT name ,  CLASS ,  date FROM race	race_track
+SELECT T2.Birth_Date ,  T2.Birth_Place FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T1.Total DESC LIMIT 1	body_builder
+SELECT avg(T1.Votes) FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID WHERE T2.Party  =  "Republican"	election_representative
+SELECT Carrier FROM device ORDER BY Carrier ASC	device
+SELECT T2.Name ,  T3.Location FROM member_attendance AS T1 JOIN member AS T2 ON T1.Member_ID  =  T2.Member_ID JOIN performance AS T3 ON T1.Performance_ID  =  T3.Performance_ID	performance_attendance
+SELECT Carrier FROM device ORDER BY Carrier ASC	device
+SELECT Votes FROM election ORDER BY Votes DESC	election_representative
+SELECT DISTINCT CLASS FROM race	race_track
+SELECT Name FROM musical WHERE Nominee  =  "Bob Fosse"	musical
+SELECT COUNT (DISTINCT Publication_Date) FROM publication	book_2
+SELECT built_year FROM ship GROUP BY built_year ORDER BY count(*) DESC LIMIT 1	ship_1
+SELECT count(*) FROM track	race_track
+SELECT Name ,  Age FROM editor	journal_committee
+SELECT CLASS FROM race GROUP BY CLASS HAVING count(*)  >=  2	race_track
+SELECT Total_Points FROM gymnast ORDER BY Floor_Exercise_Points DESC	gymnast
+SELECT T1.Title ,  T2.Publication_Date FROM book AS T1 JOIN publication AS T2 ON T1.Book_ID  =  T2.Book_ID	book_2
+SELECT count(*) ,  rank FROM captain WHERE age  <  50 GROUP BY rank	ship_1
+SELECT Date FROM performance ORDER BY Attendance DESC LIMIT 1	performance_attendance
+SELECT born_state FROM head GROUP BY born_state HAVING count(*)  >=  3	department_management
+SELECT T2.Year ,  T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID	farm
+SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T2.Height ASC	gymnast
+SELECT T1.total FROM body_builder AS T1 JOIN people AS T2 ON T1.people_id  =  T2.people_id WHERE T2.Birth_Date LIKE "%January%";	body_builder
+SELECT Official_Name ,  Status FROM city ORDER BY Population DESC LIMIT 1	farm
+SELECT name ,  LOCATION ,  year_opened FROM track WHERE seating  >  (SELECT avg(seating) FROM track)	race_track
+SELECT T2.weight FROM body_builder AS T1 JOIN people AS T2 ON T1.people_id  =  T2.people_id WHERE T1.snatch  >  140 OR T2.height  >  200;	body_builder
+SELECT T2.name ,  count(*) FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id	race_track
+SELECT name ,  LOCATION ,  year_opened FROM track WHERE seating  >  (SELECT avg(seating) FROM track)	race_track
+SELECT year_opened FROM track WHERE seating BETWEEN 4000 AND 5000	race_track
+SELECT name ,  flag FROM ship WHERE ship_id NOT IN (SELECT ship_id FROM captain WHERE rank  =  'Midshipman')	ship_1

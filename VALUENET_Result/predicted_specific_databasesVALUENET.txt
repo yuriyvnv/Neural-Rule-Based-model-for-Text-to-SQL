@@ -1,0 +1,120 @@
+SELECT count( *) FROM poker_player        
+SELECT count( *) FROM poker_player        
+SELECT poker_player.Earnings FROM poker_player     ORDER BY poker_player.Earnings DESC   
+SELECT poker_player.Earnings FROM poker_player     ORDER BY poker_player.Earnings DESC   
+SELECT poker_player.Final_Table_Made, poker_player.Best_Finish FROM poker_player        
+SELECT poker_player.Final_Table_Made, poker_player.Best_Finish FROM poker_player        
+SELECT avg( poker_player.Earnings) FROM poker_player        
+SELECT avg( poker_player.Earnings) FROM poker_player        
+SELECT poker_player.Money_Rank FROM poker_player    ORDER BY poker_player.Earnings DESC LIMIT 1    
+SELECT poker_player.Money_Rank FROM poker_player    ORDER BY poker_player.Earnings DESC LIMIT 1    
+SELECT max( poker_player.Final_Table_Made) FROM poker_player WHERE poker_player.Earnings < 200000       
+SELECT max( poker_player.Final_Table_Made) FROM poker_player WHERE poker_player.Earnings < 200000       
+SELECT people.Name FROM people JOIN poker_player ON people.People_ID = T2.People_ID        
+SELECT people.Name FROM people        
+SELECT people.Name FROM people JOIN poker_player ON people.People_ID = poker_player.People_ID WHERE poker_player.Earnings > 300000       
+SELECT people.Name FROM people JOIN poker_player ON people.People_ID = poker_player.People_ID WHERE poker_player.Earnings > 300000       
+SELECT people.Name FROM people JOIN poker_player ON people.People_ID = poker_player.People_ID     ORDER BY poker_player.Final_Table_Made ASC   
+SELECT people.Name FROM people JOIN poker_player ON people.People_ID = poker_player.People_ID     ORDER BY poker_player.Final_Table_Made ASC   
+SELECT people.Birth_Date FROM people JOIN poker_player ON people.People_ID = poker_player.People_ID    ORDER BY poker_player.Earnings ASC LIMIT 1    
+SELECT people.Birth_Date FROM people JOIN poker_player ON people.People_ID = poker_player.People_ID    ORDER BY poker_player.Earnings ASC LIMIT 1    
+SELECT poker_player.Money_Rank FROM poker_player JOIN people ON poker_player.People_ID = people.People_ID    ORDER BY people.Height DESC LIMIT 1    
+SELECT poker_player.Money_Rank FROM poker_player JOIN people ON poker_player.People_ID = people.People_ID    ORDER BY people.Height DESC LIMIT 1    
+SELECT avg( poker_player.Earnings) FROM poker_player JOIN people ON poker_player.People_ID = people.People_ID WHERE people.Height > 200       
+SELECT avg( poker_player.Earnings) FROM poker_player JOIN people ON poker_player.People_ID = people.People_ID WHERE people.Height > 200       
+SELECT people.Name FROM people JOIN poker_player ON people.People_ID = poker_player.People_ID     ORDER BY poker_player.Earnings DESC   
+SELECT people.Name FROM people JOIN poker_player ON people.People_ID = poker_player.People_ID     ORDER BY poker_player.Earnings DESC   
+SELECT people.Nationality, count( *) FROM people  GROUP BY people.Nationality      
+SELECT people.Nationality, count( *) FROM people  GROUP BY people.Nationality      
+SELECT people.Nationality FROM people  GROUP BY people.Nationality  ORDER BY count( *) DESC LIMIT 1    
+SELECT people.Nationality FROM people  GROUP BY people.Nationality  ORDER BY count( *) DESC LIMIT 1    
+SELECT people.Nationality FROM people  GROUP BY people.Nationality HAVING count( *) >= 2     
+SELECT people.Nationality FROM people  GROUP BY people.Nationality HAVING count( *) >= 2     
+SELECT people.Name, people.Birth_Date FROM people     ORDER BY people.Name ASC   
+SELECT people.Name, people.Birth_Date FROM people     ORDER BY people.Name ASC   
+SELECT people.Name FROM people WHERE people.Nationality != 'Russia'       
+SELECT people.Name FROM people WHERE people.Nationality != 'Russia'       
+SELECT people.Name FROM people        EXCEPT SELECT people.Name FROM people JOIN poker_player ON people.People_ID = T3.People_ID        
+SELECT people.Name FROM people        EXCEPT SELECT people.Name FROM people JOIN poker_player ON people.People_ID = T3.People_ID        
+SELECT DISTINCT count(DISTINCT people.Nationality) FROM people        
+SELECT DISTINCT count(DISTINCT people.Nationality) FROM people        
+SELECT count( *) FROM AREA_CODE_STATE        
+SELECT contestants.contestant_number, contestants.contestant_name FROM CONTESTANTS     ORDER BY contestants.contestant_name DESC   
+SELECT votes.vote_id, votes.phone_number, votes.state FROM VOTES        
+SELECT max( area_code_state.area_code), min( area_code_state.area_code) FROM AREA_CODE_STATE        
+SELECT max( votes.created) FROM VOTES WHERE votes.state = 'CA'       
+SELECT contestants.contestant_name FROM CONTESTANTS WHERE contestants.contestant_name != 'Jessie Alloway'       
+SELECT DISTINCT votes.state, votes.created FROM VOTES        
+SELECT contestants.contestant_number, contestants.contestant_name FROM CONTESTANTS JOIN VOTES ON contestants.contestant_number = votes.contestant_number  GROUP BY votes.contestant_number HAVING count( *) >= 2     
+SELECT contestants.contestant_number, contestants.contestant_name FROM CONTESTANTS    ORDER BY contestants.contestant_name ASC LIMIT 1    
+SELECT count( *) FROM VOTES WHERE votes.state = 'NY' or votes.state = 'CA'       
+SELECT count( *) FROM CONTESTANTS WHERE contestants.contestant_number NOT IN (SELECT votes.contestant_number FROM VOTES        )       
+SELECT area_code_state.area_code FROM AREA_CODE_STATE JOIN VOTES ON area_code_state.state = votes.state  GROUP BY area_code_state.area_code  ORDER BY count( *) DESC LIMIT 1    
+SELECT votes.created, votes.state, votes.phone_number FROM VOTES JOIN CONTESTANTS ON votes.contestant_number = contestants.contestant_number WHERE contestants.contestant_name = 'Tabatha Gehling'       
+SELECT contestants.contestant_name FROM CONTESTANTS WHERE contestants.contestant_name like '%1%'       
+SELECT count( *) FROM conductor        
+SELECT count( *) FROM conductor        
+SELECT conductor.Name FROM conductor     ORDER BY conductor.Age ASC   
+SELECT conductor.Name FROM conductor     ORDER BY conductor.Age ASC   
+SELECT conductor.Name FROM conductor WHERE conductor.Nationality != 'USA'       
+SELECT conductor.Name FROM conductor WHERE conductor.Nationality != 'USA'       
+SELECT orchestra.Record_Company FROM orchestra     ORDER BY orchestra.Year_of_Founded DESC   
+SELECT orchestra.Record_Company FROM orchestra     ORDER BY orchestra.Year_of_Founded DESC   
+SELECT avg( show.Attendance) FROM show        
+SELECT avg( show.Attendance) FROM show        
+SELECT max( performance.Share), min( performance.Share) FROM performance WHERE performance.Type != 'Live final'       
+SELECT max( performance.Share), min( performance.Share) FROM performance WHERE performance.Type != 'Live final'       
+SELECT DISTINCT count(DISTINCT conductor.Nationality) FROM conductor        
+SELECT DISTINCT count(DISTINCT conductor.Nationality) FROM conductor        
+SELECT conductor.Name FROM conductor     ORDER BY conductor.Year_of_Work DESC   
+SELECT conductor.Name FROM conductor     ORDER BY conductor.Year_of_Work DESC   
+SELECT conductor.Name FROM conductor    ORDER BY conductor.Year_of_Work DESC LIMIT 1    
+SELECT conductor.Name FROM conductor    ORDER BY conductor.Year_of_Work DESC LIMIT 1    
+SELECT conductor.Name, orchestra.Orchestra FROM conductor JOIN orchestra ON conductor.Conductor_ID = orchestra.Conductor_ID        
+SELECT conductor.Name, orchestra.Orchestra FROM conductor JOIN orchestra ON conductor.Conductor_ID = orchestra.Conductor_ID        
+SELECT conductor.Name FROM conductor JOIN orchestra ON conductor.Conductor_ID = T2.Conductor_ID  GROUP BY conductor.Name HAVING count( *) > 1     
+SELECT conductor.Name FROM conductor JOIN orchestra ON conductor.Conductor_ID = T2.Conductor_ID  GROUP BY conductor.Name HAVING count( *) > 1     
+SELECT conductor.Name FROM conductor JOIN orchestra ON conductor.Conductor_ID = orchestra.Conductor_ID  GROUP BY conductor.Name  ORDER BY count( *) DESC LIMIT 1    
+SELECT conductor.Name FROM conductor JOIN orchestra ON conductor.Conductor_ID = orchestra.Conductor_ID  GROUP BY conductor.Name  ORDER BY count( *) DESC LIMIT 1    
+SELECT conductor.Name FROM conductor JOIN orchestra ON conductor.Conductor_ID = orchestra.Conductor_ID WHERE orchestra.Year_of_Founded > 2008       
+SELECT conductor.Name FROM conductor JOIN orchestra ON conductor.Conductor_ID = orchestra.Conductor_ID WHERE orchestra.Year_of_Founded > 2008       
+SELECT orchestra.Record_Company, count( *) FROM orchestra  GROUP BY orchestra.Record_Company      
+SELECT orchestra.Record_Company, count( *) FROM orchestra  GROUP BY orchestra.Record_Company      
+SELECT orchestra.Major_Record_Format FROM orchestra JOIN performance ON orchestra.Orchestra_ID = performance.Orchestra_ID  GROUP BY orchestra.Major_Record_Format   ORDER BY count( *) ASC   
+SELECT orchestra.Major_Record_Format FROM orchestra  GROUP BY orchestra.Major_Record_Format   ORDER BY count( *) ASC   
+SELECT orchestra.Record_Company FROM orchestra  GROUP BY orchestra.Record_Company  ORDER BY count( *) DESC LIMIT 1    
+SELECT orchestra.Record_Company FROM orchestra  GROUP BY orchestra.Record_Company  ORDER BY count( *) DESC LIMIT 1    
+SELECT conductor.Name FROM conductor JOIN orchestra ON conductor.Conductor_ID = orchestra.Conductor_ID WHERE orchestra.Orchestra_ID NOT IN (SELECT orchestra.Orchestra FROM orchestra        )       
+SELECT orchestra.Orchestra FROM orchestra WHERE orchestra.Orchestra_ID NOT IN (SELECT performance.Orchestra_ID FROM performance        )       
+SELECT count( *) FROM orchestra WHERE orchestra.Major_Record_Format = 'CD' or orchestra.Major_Record_Format = 'DVD'       
+SELECT count( *) FROM orchestra WHERE orchestra.Major_Record_Format = 'CD' or orchestra.Major_Record_Format = 'DVD'       
+SELECT orchestra.Year_of_Founded FROM orchestra JOIN performance ON orchestra.Orchestra_ID = performance.Orchestra_ID  GROUP BY orchestra.Year_of_Founded HAVING count( *) > 1     
+SELECT orchestra.Year_of_Founded FROM orchestra JOIN performance ON orchestra.Orchestra_ID = performance.Orchestra_ID  GROUP BY orchestra.Year_of_Founded HAVING count( *) > 1     
+SELECT count( *) FROM singer        
+SELECT count( *) FROM singer        
+SELECT singer.Name FROM singer     ORDER BY singer.Net_Worth_Millions ASC   
+SELECT singer.Name FROM singer     ORDER BY singer.Net_Worth_Millions ASC   
+SELECT singer.Birth_Year, singer.Citizenship FROM singer        
+SELECT singer.Birth_Year, singer.Citizenship FROM singer        
+SELECT singer.Name FROM singer WHERE singer.Citizenship != 'France'       
+SELECT singer.Name FROM singer WHERE singer.Citizenship != '1'       
+SELECT singer.Name FROM singer WHERE singer.Birth_Year = 1948 or singer.Birth_Year = 1949       
+SELECT singer.Name FROM singer WHERE singer.Birth_Year = 1948 or singer.Birth_Year = 1949       
+SELECT singer.Name FROM singer    ORDER BY singer.Net_Worth_Millions DESC LIMIT 1    
+SELECT singer.Name FROM singer    ORDER BY singer.Net_Worth_Millions DESC LIMIT 1    
+SELECT singer.Citizenship, count( *) FROM singer  GROUP BY singer.Citizenship      
+SELECT singer.Citizenship, count( *) FROM singer  GROUP BY singer.Citizenship      
+SELECT singer.Citizenship FROM singer  GROUP BY singer.Citizenship  ORDER BY count( *) DESC LIMIT 1    
+SELECT singer.Citizenship FROM singer  GROUP BY singer.Citizenship  ORDER BY count( *) DESC LIMIT 1    
+SELECT singer.Citizenship, max( singer.Net_Worth_Millions) FROM singer  GROUP BY singer.Citizenship      
+SELECT singer.Citizenship, max( singer.Net_Worth_Millions) FROM singer  GROUP BY singer.Citizenship      
+SELECT song.Title, singer.Name FROM song JOIN singer ON song.Singer_ID = singer.Singer_ID        
+SELECT song.Title, singer.Name FROM song JOIN singer ON song.Singer_ID = singer.Singer_ID        
+SELECT DISTINCT singer.Name FROM singer JOIN song ON singer.Singer_ID = song.Singer_ID WHERE song.Sales > 300000       
+SELECT DISTINCT singer.Name FROM singer JOIN song ON singer.Singer_ID = song.Singer_ID WHERE song.Sales > 300000       
+SELECT singer.Name FROM singer JOIN song ON singer.Singer_ID = T2.Singer_ID  GROUP BY singer.Name HAVING count( *) > 1     
+SELECT singer.Name FROM singer JOIN song ON singer.Singer_ID = T2.Singer_ID  GROUP BY singer.Name HAVING count( *) > 1     
+SELECT singer.Name, sum( song.Sales) FROM singer JOIN song ON singer.Singer_ID = song.Singer_ID  GROUP BY singer.Name      
+SELECT singer.Name, sum( song.Sales) FROM singer JOIN song ON singer.Singer_ID = song.Singer_ID  GROUP BY singer.Name      
+SELECT singer.Name FROM singer WHERE singer.Singer_ID NOT IN (SELECT song.Singer_ID FROM song        )       
+SELECT singer.Name FROM singer WHERE singer.Singer_ID NOT IN (SELECT song.Singer_ID FROM song        )       

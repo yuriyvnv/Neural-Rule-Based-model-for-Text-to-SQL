@@ -1,0 +1,430 @@
+,database,question,sql
+0,department_management,How many heads of the departments are older than 56 ?,SELECT count(*) FROM head WHERE age  >  56
+1,department_management,"List the name, born state and age of the heads of departments ordered by age.","SELECT name ,  born_state ,  age FROM head ORDER BY age"
+2,department_management,"List the creation year, name and budget of each department.","SELECT creation ,  name ,  budget_in_billions FROM department"
+3,department_management,What are the maximum and minimum budget of the departments?,"SELECT max(budget_in_billions) ,  min(budget_in_billions) FROM department"
+4,department_management,What is the average number of employees of the departments whose rank is between 10 and 15?,SELECT avg(num_employees) FROM department WHERE ranking BETWEEN 10 AND 15
+5,department_management,What are the names of the heads who are born outside the California state?,SELECT name FROM head WHERE born_state != 'California'
+6,department_management,What are the distinct creation years of the departments managed by a secretary born in state 'Alabama'?,SELECT DISTINCT T1.creation FROM department AS T1 JOIN management AS T2 ON T1.department_id  =  T2.department_id JOIN head AS T3 ON T2.head_id  =  T3.head_id WHERE T3.born_state  =  'Alabama'
+7,department_management,What are the names of the states where at least 3 heads were born?,SELECT born_state FROM head GROUP BY born_state HAVING count(*)  >=  3
+8,department_management,In which year were most departments established?,SELECT creation FROM department GROUP BY creation ORDER BY count(*) DESC LIMIT 1
+9,department_management,Show the name and number of employees for the departments managed by heads whose temporary acting value is 'Yes'?,"SELECT T1.name ,  T1.num_employees FROM department AS T1 JOIN management AS T2 ON T1.department_id  =  T2.department_id WHERE T2.temporary_acting  =  'Yes'"
+10,department_management,How many acting statuses are there?,SELECT count(DISTINCT temporary_acting) FROM management
+11,department_management,How many departments are led by heads who are not mentioned?,SELECT count(*) FROM department WHERE department_id NOT IN (SELECT department_id FROM management);
+12,department_management,What are the distinct ages of the heads who are acting?,SELECT DISTINCT T1.age FROM management AS T2 JOIN head AS T1 ON T1.head_id  =  T2.head_id WHERE T2.temporary_acting  =  'Yes'
+13,department_management,"Which department has more than 1 head at a time? List the id, name and the number of heads.","SELECT T1.department_id ,  T1.name ,  count(*) FROM management AS T2 JOIN department AS T1 ON T1.department_id  =  T2.department_id GROUP BY T1.department_id HAVING count(*)  >  1"
+14,department_management,Which head's name has the substring 'Ha'? List the id and name.,"SELECT head_id ,  name FROM head WHERE name LIKE '%Ha%'"
+15,farm,How many farms are there?,SELECT count(*) FROM farm
+16,farm,Count the number of farms.,SELECT count(*) FROM farm
+17,farm,List the total number of horses on farms in ascending order.,SELECT Total_Horses FROM farm ORDER BY Total_Horses ASC
+18,farm,"What is the total horses record for each farm, sorted ascending?",SELECT Total_Horses FROM farm ORDER BY Total_Horses ASC
+19,farm,"What are the hosts of competitions whose theme is not ""Aliens""?",SELECT Hosts FROM farm_competition WHERE Theme !=  'Aliens'
+20,farm,Return the hosts of competitions for which the theme is not Aliens?,SELECT Hosts FROM farm_competition WHERE Theme !=  'Aliens'
+21,farm,What are the themes of farm competitions sorted by year in ascending order?,SELECT Theme FROM farm_competition ORDER BY YEAR ASC
+22,farm,"Return the themes of farm competitions, sorted by year ascending.",SELECT Theme FROM farm_competition ORDER BY YEAR ASC
+23,farm,What is the average number of working horses of farms with more than 5000 total number of horses?,SELECT avg(Working_Horses) FROM farm WHERE Total_Horses  >  5000
+24,farm,Give the average number of working horses on farms with more than 5000 total horses.,SELECT avg(Working_Horses) FROM farm WHERE Total_Horses  >  5000
+25,farm,What are the maximum and minimum number of cows across all farms.,"SELECT max(Cows) ,  min(Cows) FROM farm"
+26,farm,Return the maximum and minimum number of cows across all farms.,"SELECT max(Cows) ,  min(Cows) FROM farm"
+27,farm,How many different statuses do cities have?,SELECT count(DISTINCT Status) FROM city
+28,farm,Count the number of different statuses.,SELECT count(DISTINCT Status) FROM city
+29,farm,List official names of cities in descending order of population.,SELECT Official_Name FROM city ORDER BY Population DESC
+30,farm,"What are the official names of cities, ordered descending by population?",SELECT Official_Name FROM city ORDER BY Population DESC
+31,farm,List the official name and status of the city with the largest population.,"SELECT Official_Name ,  Status FROM city ORDER BY Population DESC LIMIT 1"
+32,farm,What is the official name and status of the city with the most residents?,"SELECT Official_Name ,  Status FROM city ORDER BY Population DESC LIMIT 1"
+33,farm,Show the years and the official names of the host cities of competitions.,"SELECT T2.Year ,  T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID"
+34,farm,Give the years and official names of the cities of each competition.,"SELECT T2.Year ,  T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID"
+35,farm,Show the official names of the cities that have hosted more than one competition.,SELECT T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID HAVING COUNT(*)  >  1
+36,farm,What are the official names of cities that have hosted more than one competition?,SELECT T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID HAVING COUNT(*)  >  1
+37,farm,Show the status of the city that has hosted the greatest number of competitions.,SELECT T1.Status FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID ORDER BY COUNT(*) DESC LIMIT 1
+38,farm,What is the status of the city that has hosted the most competitions?,SELECT T1.Status FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID ORDER BY COUNT(*) DESC LIMIT 1
+39,farm,Please show the themes of competitions with host cities having populations larger than 1000.,SELECT T2.Theme FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID WHERE T1.Population  >  1000
+40,farm,What are the themes of competitions that have corresponding host cities with more than 1000 residents?,SELECT T2.Theme FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID WHERE T1.Population  >  1000
+41,farm,Please show the different statuses of cities and the average population of cities with each status.,"SELECT Status ,  avg(Population) FROM city GROUP BY Status"
+42,farm,What are the statuses and average populations of each city?,"SELECT Status ,  avg(Population) FROM city GROUP BY Status"
+43,farm,"Please show the different statuses, ordered by the number of cities that have each.",SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) ASC
+44,farm,"Return the different statuses of cities, ascending by frequency.",SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) ASC
+45,farm,List the most common type of Status across cities.,SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) DESC LIMIT 1
+46,farm,What is the most common status across all cities?,SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) DESC LIMIT 1
+47,farm,List the official names of cities that have not held any competition.,SELECT Official_Name FROM city WHERE City_ID NOT IN (SELECT Host_city_ID FROM farm_competition)
+48,farm,What are the official names of cities that have not hosted a farm competition?,SELECT Official_Name FROM city WHERE City_ID NOT IN (SELECT Host_city_ID FROM farm_competition)
+49,farm,Find the official names of cities with population bigger than 1500 or smaller than 500.,SELECT Official_Name FROM city WHERE Population  >  1500 OR Population  <  500
+50,farm,What are the official names of cities that have population over 1500 or less than 500?,SELECT Official_Name FROM city WHERE Population  >  1500 OR Population  <  500
+51,farm,"Show the census ranking of cities whose status are not ""Village"".","SELECT Census_Ranking FROM city WHERE Status !=  ""Village"""
+52,farm,"What are the census rankings of cities that do not have the status ""Village""?","SELECT Census_Ranking FROM city WHERE Status !=  ""Village"""
+53,book_2,How many books are there?,SELECT count(*) FROM book
+54,book_2,List the writers of the books in ascending alphabetical order.,SELECT Writer FROM book ORDER BY Writer ASC
+55,book_2,List the titles of the books in ascending order of issues.,SELECT Title FROM book ORDER BY Issues ASC
+56,book_2,"What are the titles of the books whose writer is not ""Elaine Lee""?","SELECT Title FROM book WHERE Writer != ""Elaine Lee"""
+57,book_2,What are the title and issues of the books?,"SELECT Title ,  Issues FROM book"
+58,book_2,What are the dates of publications in descending order of price?,SELECT Publication_Date FROM publication ORDER BY Price DESC
+59,book_2,What are the distinct publishers of publications with price higher than 5000000?,SELECT DISTINCT Publisher FROM publication WHERE Price  >  5000000
+60,book_2,List the publisher of the publication with the highest price.,SELECT Publisher FROM publication ORDER BY Price DESC LIMIT 1
+61,book_2,List the publication dates of publications with 3 lowest prices.,SELECT Publication_Date FROM publication ORDER BY Price ASC LIMIT 3
+62,book_2,Show the title and publication dates of books.,"SELECT T1.Title ,  T2.Publication_Date FROM book AS T1 JOIN publication AS T2 ON T1.Book_ID  =  T2.Book_ID"
+63,book_2,Show writers who have published a book with price more than 4000000.,SELECT T1.Writer FROM book AS T1 JOIN publication AS T2 ON T1.Book_ID  =  T2.Book_ID WHERE T2.Price  >  4000000
+64,book_2,Show the titles of books in descending order of publication price.,SELECT T1.Title FROM book AS T1 JOIN publication AS T2 ON T1.Book_ID  =  T2.Book_ID ORDER BY T2.Price DESC
+65,book_2,Show publishers that have more than one publication.,SELECT Publisher FROM publication GROUP BY Publisher HAVING COUNT(*)  >  1
+66,book_2,Show different publishers together with the number of publications they have.,"SELECT Publisher ,  COUNT(*) FROM publication GROUP BY Publisher"
+67,book_2,Please show the most common publication date.,SELECT Publication_Date FROM publication GROUP BY Publication_Date ORDER BY COUNT(*) DESC LIMIT 1
+68,book_2,List the writers who have written more than one book.,SELECT Writer FROM book GROUP BY Writer HAVING COUNT(*)  >  1
+69,book_2,List the titles of books that are not published.,SELECT Title FROM book WHERE Book_ID NOT IN (SELECT Book_ID FROM publication)
+70,book_2,What is the number of distinct publication dates?,SELECT COUNT (DISTINCT Publication_Date) FROM publication
+71,book_2,How many distinct publication dates are there in our record?,SELECT COUNT (DISTINCT Publication_Date) FROM publication
+72,book_2,"Show the prices of publications whose publisher is either ""Person"" or ""Wiley""","SELECT Price FROM publication WHERE Publisher  =  ""Person"" OR Publisher  =  ""Wiley"""
+73,musical,How many actors are there?,SELECT count(*) FROM actor
+74,musical,Count the number of actors.,SELECT count(*) FROM actor
+75,musical,List the name of actors in ascending alphabetical order.,SELECT Name FROM actor ORDER BY Name ASC
+76,musical,"What are the names of actors, ordered alphabetically?",SELECT Name FROM actor ORDER BY Name ASC
+77,musical,What are the characters and duration of actors?,"SELECT Character ,  Duration FROM actor"
+78,musical,Return the characters and durations for each actor.,"SELECT Character ,  Duration FROM actor"
+79,musical,List the name of actors whose age is not 20.,SELECT Name FROM actor WHERE Age != 20
+80,musical,What are the names of actors who are not 20 years old?,SELECT Name FROM actor WHERE Age != 20
+81,musical,What are the characters of actors in descending order of age?,SELECT Character FROM actor ORDER BY age DESC
+82,musical,"Return the characters for actors, ordered by age descending.",SELECT Character FROM actor ORDER BY age DESC
+83,musical,What is the duration of the oldest actor?,SELECT Duration FROM actor ORDER BY Age DESC LIMIT 1
+84,musical,Return the duration of the actor with the greatest age.,SELECT Duration FROM actor ORDER BY Age DESC LIMIT 1
+85,musical,"What are the names of musicals with nominee ""Bob Fosse""?","SELECT Name FROM musical WHERE Nominee  =  ""Bob Fosse"""
+86,musical,Return the names of musicals who have the nominee Bob Fosse.,"SELECT Name FROM musical WHERE Nominee  =  ""Bob Fosse"""
+87,musical,"What are the distinct nominees of the musicals with the award that is not ""Tony Award""?","SELECT DISTINCT Nominee FROM musical WHERE Award != ""Tony Award"""
+88,musical,Return the different nominees of musicals that have an award that is not the Tony Award.,"SELECT DISTINCT Nominee FROM musical WHERE Award != ""Tony Award"""
+89,musical,Show names of actors and names of musicals they are in.,"SELECT T1.Name ,  T2.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID"
+90,musical,What are the names of actors and the musicals that they are in?,"SELECT T1.Name ,  T2.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID"
+91,musical,"Show names of actors that have appeared in musical with name ""The Phantom of the Opera"".","SELECT T1.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID WHERE T2.Name  =  ""The Phantom of the Opera"""
+92,musical,What are the names of actors who have been in the musical titled The Phantom of the Opera?,"SELECT T1.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID WHERE T2.Name  =  ""The Phantom of the Opera"""
+93,musical,Show names of actors in descending order of the year their musical is awarded.,SELECT T1.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID ORDER BY T2.Year DESC
+94,musical,What are the names of actors ordered descending by the year in which their musical was awarded?,SELECT T1.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID ORDER BY T2.Year DESC
+95,musical,Show names of musicals and the number of actors who have appeared in the musicals.,"SELECT T2.Name ,  COUNT(*) FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID GROUP BY T1.Musical_ID"
+96,musical,How many actors have appeared in each musical?,"SELECT T2.Name ,  COUNT(*) FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID GROUP BY T1.Musical_ID"
+97,musical,Show names of musicals which have at least three actors.,SELECT T2.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID GROUP BY T1.Musical_ID HAVING COUNT(*)  >=  3
+98,musical,What are the names of musicals who have at 3 or more actors?,SELECT T2.Name FROM actor AS T1 JOIN musical AS T2 ON T1.Musical_ID  =  T2.Musical_ID GROUP BY T1.Musical_ID HAVING COUNT(*)  >=  3
+99,musical,Show different nominees and the number of musicals they have been nominated.,"SELECT Nominee ,  COUNT(*) FROM musical GROUP BY Nominee"
+100,musical,How many musicals has each nominee been nominated for?,"SELECT Nominee ,  COUNT(*) FROM musical GROUP BY Nominee"
+101,musical,Please show the nominee who has been nominated the greatest number of times.,SELECT Nominee FROM musical GROUP BY Nominee ORDER BY COUNT(*) DESC LIMIT 1
+102,musical,Who is the nominee who has been nominated for the most musicals?,SELECT Nominee FROM musical GROUP BY Nominee ORDER BY COUNT(*) DESC LIMIT 1
+103,musical,List the most common result of the musicals.,SELECT RESULT FROM musical GROUP BY RESULT ORDER BY COUNT(*) DESC LIMIT 1
+104,musical,Return the most frequent result across all musicals.,SELECT RESULT FROM musical GROUP BY RESULT ORDER BY COUNT(*) DESC LIMIT 1
+105,musical,List the nominees that have been nominated more than two musicals.,SELECT Nominee FROM musical GROUP BY Nominee HAVING COUNT(*)  >  2
+106,musical,Who are the nominees who have been nominated more than two times?,SELECT Nominee FROM musical GROUP BY Nominee HAVING COUNT(*)  >  2
+107,musical,List the name of musicals that do not have actors.,SELECT Name FROM musical WHERE Musical_ID NOT IN (SELECT Musical_ID FROM actor)
+108,musical,What are the names of musicals who have no actors?,SELECT Name FROM musical WHERE Musical_ID NOT IN (SELECT Musical_ID FROM actor)
+109,musical,"Show the musical nominee with award ""Bob Fosse"" or ""Cleavant Derricks"".","SELECT Nominee FROM musical WHERE Award  =  ""Tony Award"" OR Award  =  ""Cleavant Derricks"""
+110,musical,Who are the nominees who were nominated for either of the Bob Fosse or Cleavant Derricks awards?,"SELECT Nominee FROM musical WHERE Award  =  ""Tony Award"" OR Award  =  ""Cleavant Derricks"""
+111,journal_committee,How many editors are there?,SELECT count(*) FROM editor
+112,journal_committee,List the names of editors in ascending order of age.,SELECT Name FROM editor ORDER BY Age ASC
+113,journal_committee,What are the names and ages of editors?,"SELECT Name ,  Age FROM editor"
+114,journal_committee,List the names of editors who are older than 25.,SELECT Name FROM editor WHERE Age  >  25
+115,journal_committee,Show the names of editors of age either 24 or 25.,SELECT Name FROM editor WHERE Age  =  24 OR Age  =  25
+116,journal_committee,What is the name of the youngest editor?,SELECT Name FROM editor ORDER BY Age ASC LIMIT 1
+117,journal_committee,What are the different ages of editors? Show each age along with the number of editors of that age.,"SELECT Age ,  COUNT(*) FROM editor GROUP BY Age"
+118,journal_committee,Please show the most common age of editors.,SELECT Age FROM editor GROUP BY Age ORDER BY COUNT(*) DESC LIMIT 1
+119,journal_committee,Show the distinct themes of journals.,SELECT DISTINCT Theme FROM journal
+120,journal_committee,Show the names of editors and the theme of journals for which they serve on committees.,"SELECT T2.Name ,  T3.Theme FROM journal_committee AS T1 JOIN editor AS T2 ON T1.Editor_ID  =  T2.Editor_ID JOIN journal AS T3 ON T1.Journal_ID  =  T3.Journal_ID"
+121,journal_committee,"For each journal_committee, find the editor name and the journal theme.","SELECT T2.Name ,  T3.Theme FROM journal_committee AS T1 JOIN editor AS T2 ON T1.Editor_ID  =  T2.Editor_ID JOIN journal AS T3 ON T1.Journal_ID  =  T3.Journal_ID"
+122,journal_committee,"Show the names and ages of editors and the theme of journals for which they serve on committees, in ascending alphabetical order of theme.","SELECT T2.Name ,  T2.age ,  T3.Theme FROM journal_committee AS T1 JOIN editor AS T2 ON T1.Editor_ID  =  T2.Editor_ID JOIN journal AS T3 ON T1.Journal_ID  =  T3.Journal_ID ORDER BY T3.Theme ASC"
+123,journal_committee,Show the names of editors that are on the committee of journals with sales bigger than 3000.,SELECT T2.Name FROM journal_committee AS T1 JOIN editor AS T2 ON T1.Editor_ID  =  T2.Editor_ID JOIN journal AS T3 ON T1.Journal_ID  =  T3.Journal_ID WHERE T3.Sales  >  3000
+124,journal_committee,"Show the id, name of each editor and the number of journal committees they are on.","SELECT T1.editor_id ,  T1.Name ,  COUNT(*) FROM editor AS T1 JOIN journal_committee AS T2 ON T1.Editor_ID  =  T2.Editor_ID GROUP BY T1.editor_id"
+125,journal_committee,Show the names of editors that are on at least two journal committees.,SELECT T1.Name FROM editor AS T1 JOIN journal_committee AS T2 ON T1.Editor_ID  =  T2.Editor_ID GROUP BY T1.Name HAVING COUNT(*)  >=  2
+126,journal_committee,List the names of editors that are not on any journal committee.,SELECT Name FROM editor WHERE editor_id NOT IN (SELECT editor_id FROM journal_committee)
+127,journal_committee,What is the average sales of the journals that have an editor whose work type is 'Photo'?,SELECT avg(T1.sales) FROM journal AS T1 JOIN journal_committee AS T2 ON T1.journal_ID  =  T2.journal_ID WHERE T2.work_type  =  'Photo'
+128,race_track,How many tracks do we have?,SELECT count(*) FROM track
+129,race_track,Count the number of tracks.,SELECT count(*) FROM track
+130,race_track,Show the name and location for all tracks.,"SELECT name ,  LOCATION FROM track"
+131,race_track,What are the names and locations of all tracks?,"SELECT name ,  LOCATION FROM track"
+132,race_track,"Show names and seatings, ordered by seating for all tracks opened after 2000.","SELECT name ,  seating FROM track WHERE year_opened  >  2000 ORDER BY seating"
+133,race_track,"What are the names and seatings for all tracks opened after 2000, ordered by seating?","SELECT name ,  seating FROM track WHERE year_opened  >  2000 ORDER BY seating"
+134,race_track,"What is the name, location and seating for the most recently opened track?","SELECT name ,  LOCATION ,  seating FROM track ORDER BY year_opened DESC LIMIT 1"
+135,race_track,"Return the name, location, and seating of the track that was opened in the most recent year.","SELECT name ,  LOCATION ,  seating FROM track ORDER BY year_opened DESC LIMIT 1"
+136,race_track,"What is the minimum, maximum, and average seating for all tracks.","SELECT min(seating) ,  max(seating) ,  avg(seating) FROM track"
+137,race_track,"Return the minimum, maximum, and average seating across all tracks.","SELECT min(seating) ,  max(seating) ,  avg(seating) FROM track"
+138,race_track,"Show the name, location, open year for all tracks with a seating higher than the average.","SELECT name ,  LOCATION ,  year_opened FROM track WHERE seating  >  (SELECT avg(seating) FROM track)"
+139,race_track,"What are the names, locations, and years of opening for tracks with seating higher than average?","SELECT name ,  LOCATION ,  year_opened FROM track WHERE seating  >  (SELECT avg(seating) FROM track)"
+140,race_track,What are distinct locations where tracks are located?,SELECT DISTINCT LOCATION FROM track
+141,race_track,Give the different locations of tracks.,SELECT DISTINCT LOCATION FROM track
+142,race_track,How many races are there?,SELECT count(*) FROM race
+143,race_track,Count the number of races.,SELECT count(*) FROM race
+144,race_track,What are the distinct classes that races can have?,SELECT DISTINCT CLASS FROM race
+145,race_track,Return the different classes of races.,SELECT DISTINCT CLASS FROM race
+146,race_track,"Show name, class, and date for all races.","SELECT name ,  CLASS ,  date FROM race"
+147,race_track,"What are the names, classes, and dates for all races?","SELECT name ,  CLASS ,  date FROM race"
+148,race_track,Show the race class and number of races in each class.,"SELECT CLASS ,  count(*) FROM race GROUP BY CLASS"
+149,race_track,"What are the different classes of races, and how many races correspond to each?","SELECT CLASS ,  count(*) FROM race GROUP BY CLASS"
+150,race_track,What is the race class with most number of races.,SELECT CLASS FROM race GROUP BY CLASS ORDER BY count(*) DESC LIMIT 1
+151,race_track,Give the class of races that is most common.,SELECT CLASS FROM race GROUP BY CLASS ORDER BY count(*) DESC LIMIT 1
+152,race_track,List the race class with at least two races.,SELECT CLASS FROM race GROUP BY CLASS HAVING count(*)  >=  2
+153,race_track,What are the classes of races that have two or more corresponding races?,SELECT CLASS FROM race GROUP BY CLASS HAVING count(*)  >=  2
+154,race_track,Show all track names that have had no races.,SELECT name FROM track WHERE track_id NOT IN (SELECT track_id FROM race)
+155,race_track,Return the names of tracks that have no had any races.,SELECT name FROM track WHERE track_id NOT IN (SELECT track_id FROM race)
+156,race_track,Show year where a track with a seating at least 5000 opened and a track with seating no more than 4000 opened.,SELECT year_opened FROM track WHERE seating BETWEEN 4000 AND 5000
+157,race_track,What are the years of opening for tracks with seating between 4000 and 5000?,SELECT year_opened FROM track WHERE seating BETWEEN 4000 AND 5000
+158,race_track,Show the name of track and the number of races in each track.,"SELECT T2.name ,  count(*) FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id"
+159,race_track,"What are the names of different tracks, and how many races has each had?","SELECT T2.name ,  count(*) FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id"
+160,race_track,Show the name of track with most number of races.,SELECT T2.name FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id ORDER BY count(*) DESC LIMIT 1
+161,race_track,What is the name of the track that has had the greatest number of races?,SELECT T2.name FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id ORDER BY count(*) DESC LIMIT 1
+162,race_track,Show the name and date for each race and its track name.,"SELECT T1.name ,  T1.date ,  T2.name FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id"
+163,race_track,"What are the names and dates of races, and the names of the tracks where they are held?","SELECT T1.name ,  T1.date ,  T2.name FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id"
+164,race_track,Show the name and location of track with 1 race.,"SELECT T2.name ,  T2.location FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id HAVING count(*)  =  1"
+165,race_track,What are the names and locations of tracks that have had exactly 1 race?,"SELECT T2.name ,  T2.location FROM race AS T1 JOIN track AS T2 ON T1.track_id  =  T2.track_id GROUP BY T1.track_id HAVING count(*)  =  1"
+166,climbing,How many climbers are there?,SELECT count(*) FROM climber
+167,climbing,Count the number of climbers.,SELECT count(*) FROM climber
+168,climbing,List the names of climbers in descending order of points.,SELECT Name FROM climber ORDER BY Points DESC
+169,climbing,"What are the names of the climbers, ordered by points descending?",SELECT Name FROM climber ORDER BY Points DESC
+170,climbing,List the names of climbers whose country is not Switzerland.,"SELECT Name FROM climber WHERE Country != ""Switzerland"""
+171,climbing,What are the names of climbers who are not from the country of Switzerland?,"SELECT Name FROM climber WHERE Country != ""Switzerland"""
+172,climbing,What is the maximum point for climbers whose country is United Kingdom?,"SELECT max(Points) FROM climber WHERE Country  =  ""United Kingdom"""
+173,climbing,Return the maximum number of points for climbers from the United Kingdom.,"SELECT max(Points) FROM climber WHERE Country  =  ""United Kingdom"""
+174,climbing,How many distinct countries are the climbers from?,SELECT COUNT(DISTINCT Country) FROM climber
+175,climbing,Count the number of different countries that climbers are from.,SELECT COUNT(DISTINCT Country) FROM climber
+176,climbing,What are the names of mountains in ascending alphabetical order?,SELECT Name FROM mountain ORDER BY Name ASC
+177,climbing,Give the names of mountains in alphabetical order.,SELECT Name FROM mountain ORDER BY Name ASC
+178,climbing,What are the countries of mountains with height bigger than 5000?,SELECT Country FROM mountain WHERE Height  >  5000
+179,climbing,Return the countries of the mountains that have a height larger than 5000.,SELECT Country FROM mountain WHERE Height  >  5000
+180,climbing,What is the name of the highest mountain?,SELECT Name FROM mountain ORDER BY Height DESC LIMIT 1
+181,climbing,Return the name of the mountain with the greatest height.,SELECT Name FROM mountain ORDER BY Height DESC LIMIT 1
+182,climbing,List the distinct ranges of the mountains with the top 3 prominence.,SELECT DISTINCT Range FROM mountain ORDER BY Prominence DESC LIMIT 3
+183,climbing,What are the different ranges of the 3 mountains with the highest prominence?,SELECT DISTINCT Range FROM mountain ORDER BY Prominence DESC LIMIT 3
+184,climbing,Show names of climbers and the names of mountains they climb.,"SELECT T1.Name ,  T2.Name FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID"
+185,climbing,What are the names of climbers and the corresponding names of mountains that they climb?,"SELECT T1.Name ,  T2.Name FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID"
+186,climbing,Show the names of climbers and the heights of mountains they climb.,"SELECT T1.Name ,  T2.Height FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID"
+187,climbing,What are the names of climbers and the corresponding heights of the mountains that they climb?,"SELECT T1.Name ,  T2.Height FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID"
+188,climbing,Show the height of the mountain climbed by the climber with the maximum points.,SELECT T2.Height FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID ORDER BY T1.Points DESC LIMIT 1
+189,climbing,What is the height of the mountain climbined by the climbing who had the most points?,SELECT T2.Height FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID ORDER BY T1.Points DESC LIMIT 1
+190,climbing,"Show the distinct names of mountains climbed by climbers from country ""West Germany"".","SELECT DISTINCT T2.Name FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID WHERE T1.Country  =  ""West Germany"""
+191,climbing,What are the different names of mountains ascended by climbers from the country of West Germany?,"SELECT DISTINCT T2.Name FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID WHERE T1.Country  =  ""West Germany"""
+192,climbing,Show the times used by climbers to climb mountains in Country Uganda.,"SELECT T1.Time FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID WHERE T2.Country  =  ""Uganda"""
+193,climbing,What are the times used by climbers who climbed mountains in the country of Uganda?,"SELECT T1.Time FROM climber AS T1 JOIN mountain AS T2 ON T1.Mountain_ID  =  T2.Mountain_ID WHERE T2.Country  =  ""Uganda"""
+194,climbing,Please show the countries and the number of climbers from each country.,"SELECT Country ,  COUNT(*) FROM climber GROUP BY Country"
+195,climbing,How many climbers are from each country?,"SELECT Country ,  COUNT(*) FROM climber GROUP BY Country"
+196,climbing,List the countries that have more than one mountain.,SELECT Country FROM mountain GROUP BY Country HAVING COUNT(*)  >  1
+197,climbing,Which countries have more than one mountain?,SELECT Country FROM mountain GROUP BY Country HAVING COUNT(*)  >  1
+198,climbing,List the names of mountains that do not have any climber.,SELECT Name FROM mountain WHERE Mountain_ID NOT IN (SELECT Mountain_ID FROM climber)
+199,climbing,What are the names of countains that no climber has climbed?,SELECT Name FROM mountain WHERE Mountain_ID NOT IN (SELECT Mountain_ID FROM climber)
+200,climbing,Show the range that has the most number of mountains.,SELECT Range FROM mountain GROUP BY Range ORDER BY COUNT(*) DESC LIMIT 1
+201,climbing,Which range contains the most mountains?,SELECT Range FROM mountain GROUP BY Range ORDER BY COUNT(*) DESC LIMIT 1
+202,climbing,Show the names of mountains with height more than 5000 or prominence more than 1000.,SELECT Name FROM mountain WHERE Height  >  5000 OR Prominence  >  1000
+203,climbing,What are the names of mountains that have a height of over 5000 or a prominence of over 1000?,SELECT Name FROM mountain WHERE Height  >  5000 OR Prominence  >  1000
+204,body_builder,How many body builders are there?,SELECT count(*) FROM body_builder
+205,body_builder,List the total scores of body builders in ascending order.,SELECT Total FROM body_builder ORDER BY Total ASC
+206,body_builder,List the snatch score and clean jerk score of body builders in ascending order of snatch score.,"SELECT Snatch ,  Clean_Jerk FROM body_builder ORDER BY Snatch ASC"
+207,body_builder,What is the average snatch score of body builders?,SELECT avg(Snatch) FROM body_builder
+208,body_builder,What are the clean and jerk score of the body builder with the highest total score?,SELECT Clean_Jerk FROM body_builder ORDER BY Total DESC LIMIT 1
+209,body_builder,What are the birthdays of people in ascending order of height?,SELECT Birth_Date FROM People ORDER BY Height ASC
+210,body_builder,What are the names of body builders?,SELECT T2.Name FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID
+211,body_builder,What are the names of body builders whose total score is higher than 300?,SELECT T2.Name FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID WHERE T1.Total  >  300
+212,body_builder,What is the name of the body builder with the greatest body weight?,SELECT T2.Name FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T2.Weight DESC LIMIT 1
+213,body_builder,What are the birth date and birth place of the body builder with the highest total points?,"SELECT T2.Birth_Date ,  T2.Birth_Place FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T1.Total DESC LIMIT 1"
+214,body_builder,What are the heights of body builders with total score smaller than 315?,SELECT T2.Height FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID WHERE T1.Total  <  315
+215,body_builder,What is the average total score of body builders with height bigger than 200?,SELECT avg(T1.Total) FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID WHERE T2.Height  >  200
+216,body_builder,What are the names of body builders in descending order of total scores?,SELECT T2.Name FROM body_builder AS T1 JOIN people AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T1.Total DESC
+217,body_builder,List each birth place along with the number of people from there.,"SELECT Birth_Place ,  COUNT(*) FROM people GROUP BY Birth_Place"
+218,body_builder,What is the most common birth place of people?,SELECT Birth_Place FROM people GROUP BY Birth_Place ORDER BY COUNT(*) DESC LIMIT 1
+219,body_builder,What are the birth places that are shared by at least two people?,SELECT Birth_Place FROM people GROUP BY Birth_Place HAVING COUNT(*)  >=  2
+220,body_builder,List the height and weight of people in descending order of height.,"SELECT Height ,  Weight FROM people ORDER BY Height DESC"
+221,body_builder,Show all information about each body builder.,SELECT * FROM body_builder
+222,body_builder,How many distinct birth places are there?,SELECT count(DISTINCT Birth_Place) FROM people
+223,body_builder,How many persons are not body builders?,SELECT count(*) FROM people WHERE people_id NOT IN (SELECT People_ID FROM body_builder)
+224,body_builder,List the weight of the body builders who have snatch score higher than 140 or have the height greater than 200.,SELECT T2.weight FROM body_builder AS T1 JOIN people AS T2 ON T1.people_id  =  T2.people_id WHERE T1.snatch  >  140 OR T2.height  >  200;
+225,body_builder,"What are the total scores of the body builders whose birthday contains the string ""January"" ?","SELECT T1.total FROM body_builder AS T1 JOIN people AS T2 ON T1.people_id  =  T2.people_id WHERE T2.Birth_Date LIKE ""%January%"";"
+226,body_builder,What is the minimum snatch score?,SELECT min(snatch) FROM body_builder
+227,election_representative,How many elections are there?,SELECT count(*) FROM election
+228,election_representative,List the votes of elections in descending order.,SELECT Votes FROM election ORDER BY Votes DESC
+229,election_representative,List the dates and vote percents of elections.,"SELECT Date ,  Vote_Percent FROM election"
+230,election_representative,What are the minimum and maximum vote percents of elections?,"SELECT min(Vote_Percent) ,  max(Vote_Percent) FROM election"
+231,election_representative,What are the names and parties of representatives?,"SELECT Name ,  Party FROM representative"
+232,election_representative,"What are the names of representatives whose party is not ""Republican""?","SELECT Name FROM Representative WHERE Party != ""Republican"""
+233,election_representative,What are the life spans of representatives from New York state or Indiana state?,"SELECT Lifespan FROM representative WHERE State  =  ""New York"" OR State  =  ""Indiana"""
+234,election_representative,What are the names of representatives and the dates of elections they participated in.,"SELECT T2.Name ,  T1.Date FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID"
+235,election_representative,What are the names of representatives with more than 10000 votes in election?,SELECT T2.Name FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID WHERE Votes  >  10000
+236,election_representative,What are the names of representatives in descending order of votes?,SELECT T2.Name FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID ORDER BY votes DESC
+237,election_representative,What is the party of the representative that has the smallest number of votes.,SELECT T2.Party FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID ORDER BY votes ASC LIMIT 1
+238,election_representative,What are the lifespans of representatives in descending order of vote percent?,SELECT T2.Lifespan FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID ORDER BY Vote_Percent DESC
+239,election_representative,"What is the average number of votes of representatives from party ""Republican""?","SELECT avg(T1.Votes) FROM election AS T1 JOIN representative AS T2 ON T1.Representative_ID  =  T2.Representative_ID WHERE T2.Party  =  ""Republican"""
+240,election_representative,What are the different parties of representative? Show the party name and the number of representatives in each party.,"SELECT Party ,  COUNT(*) FROM representative GROUP BY Party"
+241,election_representative,What is the party that has the largest number of representatives?,"SELECT Party ,  COUNT(*) FROM representative GROUP BY Party ORDER BY COUNT(*) DESC LIMIT 1"
+242,election_representative,What parties have at least three representatives?,SELECT Party FROM representative GROUP BY Party HAVING COUNT(*)  >=  3
+243,election_representative,What states have at least two representatives?,SELECT State FROM representative GROUP BY State HAVING COUNT(*)  >=  2
+244,election_representative,List the names of representatives that have not participated in elections listed here.,SELECT Name FROM representative WHERE Representative_ID NOT IN (SELECT Representative_ID FROM election)
+245,election_representative,How many distinct parties are there for representatives?,SELECT count(DISTINCT Party) FROM representative
+246,performance_attendance,How many performances are there?,SELECT count(*) FROM performance
+247,performance_attendance,List the hosts of performances in ascending order of attendance.,SELECT HOST FROM performance ORDER BY Attendance ASC
+248,performance_attendance,What are the dates and locations of performances?,"SELECT Date ,  LOCATION FROM performance"
+249,performance_attendance,"Show the attendances of the performances at location ""TD Garden"" or ""Bell Centre""","SELECT Attendance FROM performance WHERE LOCATION  =  ""TD Garden"" OR LOCATION  =  ""Bell Centre"""
+250,performance_attendance,What is the average number of attendees for performances?,SELECT avg(Attendance) FROM performance
+251,performance_attendance,What is the date of the performance with the highest number of attendees?,SELECT Date FROM performance ORDER BY Attendance DESC LIMIT 1
+252,performance_attendance,Show different locations and the number of performances at each location.,"SELECT LOCATION ,  COUNT(*) FROM performance GROUP BY LOCATION"
+253,performance_attendance,Show the most common location of performances.,SELECT LOCATION FROM performance GROUP BY LOCATION ORDER BY COUNT(*) DESC LIMIT 1
+254,performance_attendance,Show the locations that have at least two performances.,SELECT LOCATION FROM performance GROUP BY LOCATION HAVING COUNT(*)  >=  2
+255,performance_attendance,Show the names of members and the location of the performances they attended.,"SELECT T2.Name ,  T3.Location FROM member_attendance AS T1 JOIN member AS T2 ON T1.Member_ID  =  T2.Member_ID JOIN performance AS T3 ON T1.Performance_ID  =  T3.Performance_ID"
+256,performance_attendance,Show the names of members and the location of performances they attended in ascending alphabetical order of their names.,"SELECT T2.Name ,  T3.Location FROM member_attendance AS T1 JOIN member AS T2 ON T1.Member_ID  =  T2.Member_ID JOIN performance AS T3 ON T1.Performance_ID  =  T3.Performance_ID ORDER BY T2.Name ASC"
+257,performance_attendance,"Show the dates of performances with attending members whose roles are ""Violin"".","SELECT T3.Date FROM member_attendance AS T1 JOIN member AS T2 ON T1.Member_ID  =  T2.Member_ID JOIN performance AS T3 ON T1.Performance_ID  =  T3.Performance_ID WHERE T2.Role  =  ""Violin"""
+258,performance_attendance,Show the names of members and the dates of performances they attended in descending order of attendance of the performances.,"SELECT T2.Name ,  T3.Date FROM member_attendance AS T1 JOIN member AS T2 ON T1.Member_ID  =  T2.Member_ID JOIN performance AS T3 ON T1.Performance_ID  =  T3.Performance_ID ORDER BY T3.Attendance DESC"
+259,performance_attendance,List the names of members who did not attend any performance.,SELECT Name FROM member WHERE Member_ID NOT IN (SELECT Member_ID FROM member_attendance)
+260,gymnast,How many gymnasts are there?,SELECT count(*) FROM gymnast
+261,gymnast,Count the number of gymnasts.,SELECT count(*) FROM gymnast
+262,gymnast,List the total points of gymnasts in descending order.,SELECT Total_Points FROM gymnast ORDER BY Total_Points DESC
+263,gymnast,"What are the total points for all gymnasts, ordered by total points descending?",SELECT Total_Points FROM gymnast ORDER BY Total_Points DESC
+264,gymnast,List the total points of gymnasts in descending order of floor exercise points.,SELECT Total_Points FROM gymnast ORDER BY Floor_Exercise_Points DESC
+265,gymnast,"What are the total points of gymnasts, ordered by their floor exercise points descending?",SELECT Total_Points FROM gymnast ORDER BY Floor_Exercise_Points DESC
+266,gymnast,What is the average horizontal bar points for all gymnasts?,SELECT avg(Horizontal_Bar_Points) FROM gymnast
+267,gymnast,Return the average horizontal bar points across all gymnasts.,SELECT avg(Horizontal_Bar_Points) FROM gymnast
+268,gymnast,What are the names of people in ascending alphabetical order?,SELECT Name FROM People ORDER BY Name ASC
+269,gymnast,"Return the names of people, ordered alphabetically.",SELECT Name FROM People ORDER BY Name ASC
+270,gymnast,What are the names of gymnasts?,SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID
+271,gymnast,Return the names of the gymnasts.,SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID
+272,gymnast,"What are the names of gymnasts whose hometown is not ""Santo Domingo""?","SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID WHERE T2.Hometown != ""Santo Domingo"""
+273,gymnast,Return the names of gymnasts who did not grow up in Santo Domingo.,"SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID WHERE T2.Hometown != ""Santo Domingo"""
+274,gymnast,What is the age of the tallest person?,SELECT Age FROM people ORDER BY Height DESC LIMIT 1
+275,gymnast,Return the age of the person with the greatest height.,SELECT Age FROM people ORDER BY Height DESC LIMIT 1
+276,gymnast,List the names of the top 5 oldest people.,SELECT Name FROM People ORDER BY Age DESC LIMIT 5
+277,gymnast,What are the names of the five oldest people?,SELECT Name FROM People ORDER BY Age DESC LIMIT 5
+278,gymnast,What is the total point count of the youngest gymnast?,SELECT T1.Total_Points FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T2.Age ASC LIMIT 1
+279,gymnast,Return the total points of the gymnast with the lowest age.,SELECT T1.Total_Points FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T2.Age ASC LIMIT 1
+280,gymnast,What is the average age of all gymnasts?,SELECT avg(T2.Age) FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID
+281,gymnast,Return the average age across all gymnasts.,SELECT avg(T2.Age) FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID
+282,gymnast,What are the distinct hometowns of gymnasts with total points more than 57.5?,SELECT DISTINCT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID WHERE T1.Total_Points  >  57.5
+283,gymnast,Give the different hometowns of gymnasts that have a total point score of above 57.5.,SELECT DISTINCT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID WHERE T1.Total_Points  >  57.5
+284,gymnast,What are the hometowns of gymnasts and the corresponding number of gymnasts?,"SELECT T2.Hometown ,  COUNT(*) FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown"
+285,gymnast,How many gymnasts are from each hometown?,"SELECT T2.Hometown ,  COUNT(*) FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown"
+286,gymnast,What is the most common hometown of gymnasts?,SELECT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown ORDER BY COUNT(*) DESC LIMIT 1
+287,gymnast,Return the hometown that is most common among gymnasts.,SELECT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown ORDER BY COUNT(*) DESC LIMIT 1
+288,gymnast,What are the hometowns that are shared by at least two gymnasts?,SELECT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown HAVING COUNT(*)  >=  2
+289,gymnast,Give the hometowns from which two or more gymnasts are from.,SELECT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID GROUP BY T2.Hometown HAVING COUNT(*)  >=  2
+290,gymnast,List the names of gymnasts in ascending order by their heights.,SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T2.Height ASC
+291,gymnast,"What are the names of gymnasts, ordered by their heights ascending?",SELECT T2.Name FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T2.Height ASC
+292,gymnast,How many distinct hometowns did these people have?,SELECT count(DISTINCT Hometown) FROM people
+293,gymnast,Count the number of different hometowns of these people.,SELECT count(DISTINCT Hometown) FROM people
+294,gymnast,Show the ages of gymnasts in descending order of total points.,SELECT T2.Age FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T1.Total_Points DESC
+295,gymnast,"What are the ages of the gymnasts, ordered descending by their total points?",SELECT T2.Age FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID  =  T2.People_ID ORDER BY T1.Total_Points DESC
+296,wrestler,How many wrestlers are there?,SELECT count(*) FROM wrestler
+297,wrestler,Count the number of wrestlers.,SELECT count(*) FROM wrestler
+298,wrestler,List the names of wrestlers in descending order of days held.,SELECT Name FROM wrestler ORDER BY Days_held DESC
+299,wrestler,"What are the names of the wrestlers, ordered descending by days held?",SELECT Name FROM wrestler ORDER BY Days_held DESC
+300,wrestler,What is the name of the wrestler with the fewest days held?,SELECT Name FROM wrestler ORDER BY Days_held ASC LIMIT 1
+301,wrestler,Return the name of the wrestler who had the lowest number of days held.,SELECT Name FROM wrestler ORDER BY Days_held ASC LIMIT 1
+302,wrestler,"What are the distinct reigns of wrestlers whose location is not ""Tokyo,Japan"" ?","SELECT DISTINCT Reign FROM wrestler WHERE LOCATION != ""Tokyo , Japan"""
+303,wrestler,"Give the different reigns of wrestlers who are not located in Tokyo, Japan.","SELECT DISTINCT Reign FROM wrestler WHERE LOCATION != ""Tokyo , Japan"""
+304,wrestler,What are the names and location of the wrestlers?,"SELECT Name ,  LOCATION FROM wrestler"
+305,wrestler,Give the names and locations of all wrestlers.,"SELECT Name ,  LOCATION FROM wrestler"
+306,wrestler,"What are the elimination moves of wrestlers whose team is ""Team Orton""?","SELECT Elimination_Move FROM Elimination WHERE Team  =  ""Team Orton"""
+307,wrestler,Return the elimination movies of wrestlers on Team Orton.,"SELECT Elimination_Move FROM Elimination WHERE Team  =  ""Team Orton"""
+308,wrestler,What are the names of wrestlers and the elimination moves?,"SELECT T2.Name ,  T1.Elimination_Move FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID"
+309,wrestler,Give the names of wrestlers and their elimination moves.,"SELECT T2.Name ,  T1.Elimination_Move FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID"
+310,wrestler,List the names of wrestlers and the teams in elimination in descending order of days held.,"SELECT T2.Name ,  T1.Team FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID ORDER BY T2.Days_held DESC"
+311,wrestler,"What are the names of wrestlers and their teams in elimination, ordered descending by days held?","SELECT T2.Name ,  T1.Team FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID ORDER BY T2.Days_held DESC"
+312,wrestler,List the time of elimination of the wrestlers with largest days held.,SELECT T1.Time FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID ORDER BY T2.Days_held DESC LIMIT 1
+313,wrestler,What is the time of elimination for the wrestler with the most days held?,SELECT T1.Time FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID ORDER BY T2.Days_held DESC LIMIT 1
+314,wrestler,Show times of elimination of wrestlers with days held more than 50.,SELECT T1.Time FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID WHERE T2.Days_held  >  50
+315,wrestler,What are the times of elimination for wrestlers with over 50 days held?,SELECT T1.Time FROM elimination AS T1 JOIN wrestler AS T2 ON T1.Wrestler_ID  =  T2.Wrestler_ID WHERE T2.Days_held  >  50
+316,wrestler,Show different teams in eliminations and the number of eliminations from each team.,"SELECT Team ,  COUNT(*) FROM elimination GROUP BY Team"
+317,wrestler,How many eliminations did each team have?,"SELECT Team ,  COUNT(*) FROM elimination GROUP BY Team"
+318,wrestler,Show teams that have suffered more than three eliminations.,SELECT Team FROM elimination GROUP BY Team HAVING COUNT(*)  >  3
+319,wrestler,Which teams had more than 3 eliminations?,SELECT Team FROM elimination GROUP BY Team HAVING COUNT(*)  >  3
+320,wrestler,Show the reign and days held of wrestlers.,"SELECT Reign ,  Days_held FROM wrestler"
+321,wrestler,What are the reigns and days held of all wrestlers?,"SELECT Reign ,  Days_held FROM wrestler"
+322,wrestler,What are the names of wrestlers days held less than 100?,SELECT Name FROM wrestler WHERE Days_held  <  100
+323,wrestler,Return the names of wrestlers with fewer than 100 days held.,SELECT Name FROM wrestler WHERE Days_held  <  100
+324,wrestler,Please show the most common reigns of wrestlers.,SELECT Reign FROM wrestler GROUP BY Reign ORDER BY COUNT(*) DESC LIMIT 1
+325,wrestler,Which reign is the most common among wrestlers?,SELECT Reign FROM wrestler GROUP BY Reign ORDER BY COUNT(*) DESC LIMIT 1
+326,wrestler,List the locations that are shared by more than two wrestlers.,SELECT LOCATION FROM wrestler GROUP BY LOCATION HAVING COUNT(*)  >  2
+327,wrestler,Which locations are shared by more than two wrestlers?,SELECT LOCATION FROM wrestler GROUP BY LOCATION HAVING COUNT(*)  >  2
+328,wrestler,List the names of wrestlers that have not been eliminated.,SELECT Name FROM wrestler WHERE Wrestler_ID NOT IN (SELECT Wrestler_ID FROM elimination)
+329,wrestler,What are the names of wrestlers who have never been eliminated?,SELECT Name FROM wrestler WHERE Wrestler_ID NOT IN (SELECT Wrestler_ID FROM elimination)
+330,wrestler,What is the number of distinct teams that suffer elimination?,SELECT COUNT (DISTINCT team) FROM elimination
+331,wrestler,How many different teams have had eliminated wrestlers?,SELECT COUNT (DISTINCT team) FROM elimination
+332,wrestler,"Show the times of elimination by ""Punk"" or ""Orton"".","SELECT TIME FROM elimination WHERE Eliminated_By  =  ""Punk"" OR Eliminated_By  =  ""Orton"""
+333,wrestler,What are the times of elimination for any instances in which the elimination was done by Punk or Orton?,"SELECT TIME FROM elimination WHERE Eliminated_By  =  ""Punk"" OR Eliminated_By  =  ""Orton"""
+334,device,How many devices are there?,SELECT count(*) FROM device
+335,device,Count the number of devices.,SELECT count(*) FROM device
+336,device,List the carriers of devices in ascending alphabetical order.,SELECT Carrier FROM device ORDER BY Carrier ASC
+337,device,"What are the different carriers for devices, listed in alphabetical order?",SELECT Carrier FROM device ORDER BY Carrier ASC
+338,device,"What are the carriers of devices whose software platforms are not ""Android""?",SELECT Carrier FROM device WHERE Software_Platform != 'Android'
+339,device,Return the device carriers that do not have Android as their software platform.,SELECT Carrier FROM device WHERE Software_Platform != 'Android'
+340,device,What are the names of shops in ascending order of open year?,SELECT Shop_Name FROM shop ORDER BY Open_Year ASC
+341,device,"Return the names of shops, ordered by year of opening ascending.",SELECT Shop_Name FROM shop ORDER BY Open_Year ASC
+342,device,What is the average quantity of stocks?,SELECT avg(Quantity) FROM stock
+343,device,Give the average quantity of stocks.,SELECT avg(Quantity) FROM stock
+344,device,What are the names and location of the shops in ascending alphabetical order of name.,"SELECT Shop_Name ,  LOCATION FROM shop ORDER BY Shop_Name ASC"
+345,device,"Return the names and locations of shops, ordered by name in alphabetical order.","SELECT Shop_Name ,  LOCATION FROM shop ORDER BY Shop_Name ASC"
+346,device,How many different software platforms are there for devices?,SELECT count(DISTINCT Software_Platform) FROM device
+347,device,Count the number of different software platforms.,SELECT count(DISTINCT Software_Platform) FROM device
+348,device,"List the open date of open year of the shop named ""Apple"".","SELECT Open_Date ,  Open_Year FROM shop WHERE Shop_Name  =  ""Apple"""
+349,device,What are the open dates and years for the shop named Apple?,"SELECT Open_Date ,  Open_Year FROM shop WHERE Shop_Name  =  ""Apple"""
+350,device,List the name of the shop with the latest open year.,SELECT Shop_Name FROM shop ORDER BY Open_Year DESC LIMIT 1
+351,device,What is the shop name corresponding to the shop that opened in the most recent year?,SELECT Shop_Name FROM shop ORDER BY Open_Year DESC LIMIT 1
+352,device,Show names of shops and the carriers of devices they have in stock.,"SELECT T3.Shop_Name ,  T2.Carrier FROM stock AS T1 JOIN device AS T2 ON T1.Device_ID  =  T2.Device_ID JOIN shop AS T3 ON T1.Shop_ID  =  T3.Shop_ID"
+353,device,"What are the names of device shops, and what are the carriers that they carry devices in stock for?","SELECT T3.Shop_Name ,  T2.Carrier FROM stock AS T1 JOIN device AS T2 ON T1.Device_ID  =  T2.Device_ID JOIN shop AS T3 ON T1.Shop_ID  =  T3.Shop_ID"
+354,device,Show names of shops that have more than one kind of device in stock.,SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID HAVING COUNT(*)  >  1
+355,device,What are the names of shops that have more than a single kind of device in stock?,SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID HAVING COUNT(*)  >  1
+356,device,Show the name of the shop that has the most kind of devices in stock.,SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID ORDER BY COUNT(*) DESC LIMIT 1
+357,device,What is the name of the shop that has the most different kinds of devices in stock?,SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID ORDER BY COUNT(*) DESC LIMIT 1
+358,device,Show the name of the shop that have the largest quantity of devices in stock.,SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID ORDER BY SUM(T1.quantity) DESC LIMIT 1
+359,device,What is the name of the shop that has the greatest quantity of devices in stock?,SELECT T2.Shop_Name FROM stock AS T1 JOIN shop AS T2 ON T1.Shop_ID  =  T2.Shop_ID GROUP BY T1.Shop_ID ORDER BY SUM(T1.quantity) DESC LIMIT 1
+360,device,Please show different software platforms and the corresponding number of devices using each.,"SELECT Software_Platform ,  COUNT(*) FROM device GROUP BY Software_Platform"
+361,device,"What are the different software platforms for devices, and how many devices have each?","SELECT Software_Platform ,  COUNT(*) FROM device GROUP BY Software_Platform"
+362,device,Please show the software platforms of devices in descending order of the count.,SELECT Software_Platform FROM device GROUP BY Software_Platform ORDER BY COUNT(*) DESC
+363,device,"What are the different software platforms for devices, ordered by frequency descending?",SELECT Software_Platform FROM device GROUP BY Software_Platform ORDER BY COUNT(*) DESC
+364,device,List the software platform shared by the greatest number of devices.,SELECT Software_Platform FROM device GROUP BY Software_Platform ORDER BY COUNT(*) DESC LIMIT 1
+365,device,What is the software platform that is most common amongst all devices?,SELECT Software_Platform FROM device GROUP BY Software_Platform ORDER BY COUNT(*) DESC LIMIT 1
+366,device,List the names of shops that have no devices in stock.,SELECT Shop_Name FROM shop WHERE Shop_ID NOT IN (SELECT Shop_ID FROM stock)
+367,device,What are the names of shops that do not have any devices in stock?,SELECT Shop_Name FROM shop WHERE Shop_ID NOT IN (SELECT Shop_ID FROM stock)
+368,device,List the carriers of devices that have no devices in stock.,SELECT Carrier FROM device WHERE Device_ID NOT IN (SELECT Device_ID FROM stock)
+369,device,What are the carriers of devices that are not in stock anywhere?,SELECT Carrier FROM device WHERE Device_ID NOT IN (SELECT Device_ID FROM stock)
+370,device,Show the carriers of devices in stock at more than one shop.,SELECT T2.Carrier FROM stock AS T1 JOIN device AS T2 ON T1.Device_ID  =  T2.Device_ID GROUP BY T1.Device_ID HAVING COUNT(*)  >  1
+371,device,What are the carriers of devices that are in stock in more than a single shop?,SELECT T2.Carrier FROM stock AS T1 JOIN device AS T2 ON T1.Device_ID  =  T2.Device_ID GROUP BY T1.Device_ID HAVING COUNT(*)  >  1
+372,ship_1,How many different captain ranks are there?,SELECT count(DISTINCT rank) FROM captain
+373,ship_1,Count the number of different ranks of captain.,SELECT count(DISTINCT rank) FROM captain
+374,ship_1,How many captains are in each rank?,"SELECT count(*) ,  rank FROM captain GROUP BY rank"
+375,ship_1,Count the number of captains that have each rank.,"SELECT count(*) ,  rank FROM captain GROUP BY rank"
+376,ship_1,How many captains with younger than 50 are in each rank?,"SELECT count(*) ,  rank FROM captain WHERE age  <  50 GROUP BY rank"
+377,ship_1,Count the number of captains younger than 50 of each rank.,"SELECT count(*) ,  rank FROM captain WHERE age  <  50 GROUP BY rank"
+378,ship_1,Sort all captain names by their ages from old to young.,SELECT name FROM captain ORDER BY age DESC
+379,ship_1,"What are the names of captains, sorted by age descending?",SELECT name FROM captain ORDER BY age DESC
+380,ship_1,"Find the name, class and rank of all captains.","SELECT name ,  CLASS ,  rank FROM captain"
+381,ship_1,"What are the names, classes, and ranks of all captains?","SELECT name ,  CLASS ,  rank FROM captain"
+382,ship_1,Which rank is the most common among captains?,SELECT rank FROM captain GROUP BY rank ORDER BY count(*) DESC LIMIT 1
+383,ship_1,Return the rank for which there are the fewest captains.,SELECT rank FROM captain GROUP BY rank ORDER BY count(*) DESC LIMIT 1
+384,ship_1,Which classes have more than two captains?,SELECT CLASS FROM captain GROUP BY CLASS HAVING count(*)  >  2
+385,ship_1,Give the classes that have more than two captains.,SELECT CLASS FROM captain GROUP BY CLASS HAVING count(*)  >  2
+386,ship_1,Find the name of captains whose rank are either Midshipman or Lieutenant.,SELECT name FROM captain WHERE rank  =  'Midshipman' OR rank  =  'Lieutenant'
+387,ship_1,What are the names of captains that have either the rank Midshipman or Lieutenant?,SELECT name FROM captain WHERE rank  =  'Midshipman' OR rank  =  'Lieutenant'
+388,ship_1,What are the average and minimum age of captains in different class?,"SELECT avg(age) ,  min(age) ,  CLASS FROM captain GROUP BY CLASS"
+389,ship_1,Return the average and minimum age of captains in each class.,"SELECT avg(age) ,  min(age) ,  CLASS FROM captain GROUP BY CLASS"
+390,ship_1,What is the name of the youngest captain?,SELECT name FROM captain ORDER BY age LIMIT 1
+391,ship_1,Return the name of the youngest captain.,SELECT name FROM captain ORDER BY age LIMIT 1
+392,ship_1,how many ships are there?,SELECT count(*) FROM ship
+393,ship_1,Count the number of ships.,SELECT count(*) FROM ship
+394,ship_1,"Find the name, type, and flag of the ship that is built in the most recent year.","SELECT name ,  TYPE ,  flag FROM ship ORDER BY built_year DESC LIMIT 1"
+395,ship_1,"What is the name, type, and flag of the ship that was built in the most recent year?","SELECT name ,  TYPE ,  flag FROM ship ORDER BY built_year DESC LIMIT 1"
+396,ship_1,"Group by ships by flag, and return number of ships that have each flag.","SELECT count(*) ,  flag FROM ship GROUP BY flag"
+397,ship_1,"What are the different ship flags, and how many ships have each?","SELECT count(*) ,  flag FROM ship GROUP BY flag"
+398,ship_1,Which flag is most widely used among all ships?,SELECT flag FROM ship GROUP BY flag ORDER BY count(*) DESC LIMIT 1
+399,ship_1,Return the flag that is most common among all ships.,SELECT flag FROM ship GROUP BY flag ORDER BY count(*) DESC LIMIT 1
+400,ship_1,List all ship names in the order of built year and class.,"SELECT name FROM ship ORDER BY built_year ,  CLASS"
+401,ship_1,"What are the names of ships, ordered by year they were built and their class?","SELECT name FROM ship ORDER BY built_year ,  CLASS"
+402,ship_1,In which year were most of ships built?,SELECT built_year FROM ship GROUP BY built_year ORDER BY count(*) DESC LIMIT 1
+403,ship_1,What is the year in which most ships were built?,SELECT built_year FROM ship GROUP BY built_year ORDER BY count(*) DESC LIMIT 1
+404,ship_1,Find the name of the ships that have more than one captain.,SELECT t1.name FROM ship AS t1 JOIN captain AS t2 ON t1.ship_id  =  t2.ship_id GROUP BY t2.ship_id HAVING count(*)  >  1
+405,ship_1,What are the names of ships that have more than one captain?,SELECT t1.name FROM ship AS t1 JOIN captain AS t2 ON t1.ship_id  =  t2.ship_id GROUP BY t2.ship_id HAVING count(*)  >  1
+406,ship_1,what are the names and classes of the ships that do not have any captain yet?,"SELECT name ,  CLASS FROM ship WHERE ship_id NOT IN (SELECT ship_id FROM captain)"
+407,ship_1,Return the names and classes of ships that do not have a captain?,"SELECT name ,  CLASS FROM ship WHERE ship_id NOT IN (SELECT ship_id FROM captain)"
+408,ship_1,Find the name of the ship that is steered by the youngest captain.,SELECT t1.name FROM ship AS t1 JOIN captain AS t2 ON t1.ship_id  =  t2.ship_id ORDER BY t2.age LIMIT 1
+409,ship_1,What is the name of the ship that is commanded by the youngest captain?,SELECT t1.name FROM ship AS t1 JOIN captain AS t2 ON t1.ship_id  =  t2.ship_id ORDER BY t2.age LIMIT 1
+410,ship_1,Find the name and flag of ships that are not steered by any captain with Midshipman rank.,"SELECT name ,  flag FROM ship WHERE ship_id NOT IN (SELECT ship_id FROM captain WHERE rank  =  'Midshipman')"
+411,ship_1,What are the names and flags of ships that do not have a captain with the rank of Midshipman?,"SELECT name ,  flag FROM ship WHERE ship_id NOT IN (SELECT ship_id FROM captain WHERE rank  =  'Midshipman')"
+412,school_bus,How many drivers are there?,SELECT count(*) FROM driver
+413,school_bus,"Show the name, home city, and age for all drivers.","SELECT name ,  home_city ,  age FROM driver"
+414,school_bus,Show the party and the number of drivers in each party.,"SELECT party ,  count(*) FROM driver GROUP BY party"
+415,school_bus,Show the name of drivers in descending order of age.,SELECT name FROM driver ORDER BY age DESC
+416,school_bus,Show all different home cities.,SELECT DISTINCT home_city FROM driver
+417,school_bus,Show the home city with the most number of drivers.,SELECT home_city FROM driver GROUP BY home_city ORDER BY count(*) DESC LIMIT 1
+418,school_bus,Show the party with drivers from Hartford and drivers older than 40.,SELECT party FROM driver WHERE home_city  =  'Hartford' AND age  >  40
+419,school_bus,Show home city where at least two drivers older than 40 are from.,SELECT home_city FROM driver WHERE age  >  40 GROUP BY home_city HAVING count(*)  >=  2
+420,school_bus,Show the names of the drivers without a school bus.,SELECT name FROM driver WHERE driver_id NOT IN (SELECT driver_id FROM school_bus)
+421,school_bus,Show the types of schools that have two schools.,SELECT TYPE FROM school GROUP BY TYPE HAVING count(*)  =  2
+422,school_bus,Show the school name and driver name for all school buses.,"SELECT T2.school ,  T3.name FROM school_bus AS T1 JOIN school AS T2 ON T1.school_id  =  T2.school_id JOIN driver AS T3 ON T1.driver_id  =  T3.driver_id"
+423,school_bus,"What is the maximum, minimum and average years spent working on a school bus?","SELECT max(years_working) ,  min(years_working) ,  avg(years_working) FROM school_bus"
+424,school_bus,Show the school name and type for schools without a school bus.,"SELECT school ,  TYPE FROM school WHERE school_id NOT IN (SELECT school_id FROM school_bus)"
+425,school_bus,Show the type of school and the number of buses for each type.,"SELECT T2.type ,  count(*) FROM school_bus AS T1 JOIN school AS T2 ON T1.school_id  =  T2.school_id GROUP BY T2.type"
+426,school_bus,How many drivers are from Hartford city or younger than 40?,SELECT count(*) FROM driver WHERE home_city  =  'Hartford' OR age  <  40
+427,school_bus,List names for drivers from Hartford city and younger than 40.,SELECT name FROM driver WHERE home_city  =  'Hartford' AND age  <  40
+428,school_bus,find the name of driver who is driving the school bus with the longest working history.,SELECT t1.name FROM driver AS t1 JOIN school_bus AS t2 ON t1.driver_id  =  t2.driver_id ORDER BY years_working DESC LIMIT 1
